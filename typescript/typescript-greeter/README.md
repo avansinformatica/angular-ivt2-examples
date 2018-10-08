@@ -1,6 +1,6 @@
 # TypeScript Sample: Greeter 
 
-This example is forked from (https://github.com/Microsoft/TypeScriptSamples/tree/master/greeter)[https://github.com/Microsoft/TypeScriptSamples/tree/master/greeter].
+This example is forked from [https://github.com/Microsoft/TypeScriptSamples/tree/master/greeter](https://github.com/Microsoft/TypeScriptSamples/tree/master/greeter).
 
 ## Overview 
 
