@@ -1,5 +1,10 @@
+/**
+ * Example stack implementation using interface and Array class.
+ */
 
-
+/**
+ * Interface defining stack functionality.
+ */
 export interface StackInterface<T> {
 
 	// Interface methods
@@ -10,6 +15,9 @@ export interface StackInterface<T> {
 	isEmpty(): boolean;
 }
 
+/**
+ * Generic class using Array as collection.
+ */
 export class ArrayStack<T> implements StackInterface<T> {
 
 	private stack: Array<T>;
@@ -18,7 +26,6 @@ export class ArrayStack<T> implements StackInterface<T> {
 		this.stack = new Array<T>();
 	}
 
-	// Methods: maken de 'glue' tussen de interface en de implementatie (hier met array)
 	push(t: T): void {
 		this.stack.push(t);
 	}	
