@@ -1,11 +1,17 @@
-# Sample Readme.md 
+# TypeScript reactive streams
+Examples of reactive streams using TypeScript and RxJs. 
 
-## Overview 
-
-Add instructions for building and running this example.
-
-## Running
+## Building and running
 ```
-tsc --sourcemap greeter.ts
-start greeter.html
+npm install -g typescript
+npm install
+tsc
+node src\index.js
+```
+
+Or:
+```
+npm install -g typescript
+npm install
+npm start
 ```
