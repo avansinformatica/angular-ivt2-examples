@@ -34,6 +34,7 @@ export class ArrayStack<T> implements StackInterface<T> {
 		if(this.stack.length > 0) {
 			return this.stack.pop();		
 		} else {
+			// Throwing an Error means that the caller has to try/catch this function!
 			throw new Error('cannot pop: stack contains no elements!');
 		}
 	}
