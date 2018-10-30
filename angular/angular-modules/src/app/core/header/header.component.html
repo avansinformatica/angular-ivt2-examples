@@ -1,0 +1,40 @@
+<nav 
+  class="navbar navbar-expand-md navbar-light"
+  *ngIf="isLoggedIn$ | async">
+  <div class="container">
+    <a class="navbar-brand" href="#">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" 
+      data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" [routerLinkActive]="['active']">
+          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li ngbDropdown *ngIf="isAdmin$ | async as isAdmin" class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link" id="users">Users</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="users">
+            <a class="dropdown-item" routerLink="/users" [routerLinkActive]="['active']">List all</a>
+            <a class="dropdown-item" routerLink="/todo" [routerLinkActive]="['active']">Add new</a>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav" *ngIf="isLoggedIn$ | async as isLoggedIn">
+        <li ngbDropdown class="nav-item dropdown">
+          <a ngbDropdownToggle class="nav-link" id="profile">{{fullName}}</a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="profile">
+            <a class="dropdown-item" routerLink="/users/me" [routerLinkActive]="['active']">My Profile</a>
+            <a class="dropdown-item" routerLink="/todo" [routerLinkActive]="['active']">My Progress</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="" (click)="onLogout()">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- <br /> -->
+

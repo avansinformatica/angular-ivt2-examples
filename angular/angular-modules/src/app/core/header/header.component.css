@@ -1,0 +1,15 @@
+.navbar {
+	background-color: #70a6e040;
+}
+
+.navbar-nav>li>a.active {
+  color: white;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.btn-space {
+  margin-right: 5px;
+}
