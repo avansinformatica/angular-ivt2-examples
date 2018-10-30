@@ -1,0 +1,32 @@
+{
+	"result": [
+		{ 
+			"data": {
+				"id": "12345",
+				"firstname": "Henk",
+				"lastname": "Jansen",
+				"email": "admin@avans.nl"
+			},
+			"roles": [ 
+				0, 1, 2
+			],
+			"token": "oijWEsdfmnEFIOjjNRGKnwriJWRIjwrgknrfgijwrjkNIOwrg]ijw"
+		}, 
+		{
+			"data": {
+				"id": "245637",
+				"firstname": "Maarten",
+				"lastname": "Van der Weijden",
+				"email": "m.vdweijden@student.avans.nl"
+			},
+			"roles": [
+				0
+			],
+			"token": "oijWsdfadflgkja,mRGKnwriJWRIjwrgknrfgijwrjkNIOwrg]ijw"
+		}
+	],	
+	"status": {
+		"code": 200,
+		"message": "Alles goed, server werkt nog, request ging goed."
+	}
+}
