@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 offset-xs-3">
+      <h2>List of Users</h2>
+    </div>
+  </div>
+  
+  <!-- all users in a table -->
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Number of Posts</th>
+          <th scope="col">Number of Likes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- note the ngFor usage -->
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{ i }}</td>
+          <!-- note that we can use '{{...}} in attributes' -->
+          <td><a routerLink="{{i}}">{{ user.name }}</a></td>
+          <td>{{ user.getNumberOfPosts() }}</td>
+          <td>{{ user.getNumberOfLikes() }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,11 +1,11 @@
-# Sample Readme.md 
+# Simple Routing
 
 ## Overview 
 
-Add instructions for building and running this example.
+This showcases basic routing and authentication guards in Angular.
 
 ## Running
 ```
-tsc --sourcemap greeter.ts
-start greeter.html
+npm install
+ng serve
 ```

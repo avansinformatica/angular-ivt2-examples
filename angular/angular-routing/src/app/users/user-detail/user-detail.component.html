@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h2>User {{ getUser().name }} details</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Content</th>
+          <th>Likes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- note ngFor usage -->
+        <tr *ngFor="let post of getUser().posts">
+          <td>{{post.title}}</td>
+          <td>{{post.content}}</td>
+          <td>{{post.likes}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
