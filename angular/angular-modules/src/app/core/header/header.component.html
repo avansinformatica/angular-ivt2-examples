@@ -16,8 +16,9 @@
         <li ngbDropdown *ngIf="isAdmin$ | async as isAdmin" class="nav-item dropdown">
           <a ngbDropdownToggle class="nav-link" id="users">Users</a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="users">
-            <a class="dropdown-item" routerLink="/users" [routerLinkActive]="['active']">List all</a>
-            <a class="dropdown-item" routerLink="/todo" [routerLinkActive]="['active']">Add new</a>
+            <a class="dropdown-item" routerLink="/users/dashboard" [routerLinkActive]="['active']">User Dashboard</a>
+            <a class="dropdown-item" routerLink="/users/list" [routerLinkActive]="['active']">User List</a>
+            <a class="dropdown-item" routerLink="/users/new" [routerLinkActive]="['active']">Add New User</a>
           </div>
         </li>
       </ul>

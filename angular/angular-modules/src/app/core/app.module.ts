@@ -6,7 +6,7 @@ import { AppDashboardComponent } from '../components/dashboard/dashboard.compone
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { UsersModule } from '../modules/users/users.module';
+import { UsersModule } from '../modules/users/user.module';
 import { LoggedInAuthGuard, AdminRoleAuthGuard } from '../modules/auth/auth.guards';
 import { LoginComponent } from '../modules/auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
