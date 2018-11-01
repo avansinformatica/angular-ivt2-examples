@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-users',
-  templateUrl: './users.component.html',
+  templateUrl: './user.component.html',
   styles: []
 })
 export class UsersComponent implements OnInit {

@@ -1,6 +1,7 @@
 <h1>{{title}}</h1>
 
 <div *ngIf="user">
+	<button type="button" routerLink='edit' class="btn btn-warning btn-outline"> Edit </button>
 	<table class="table table-borderless table-sm">
 		<tbody>
 			<tr>
@@ -26,9 +27,7 @@
 			</tr>
 		</tbody>
 	</table>
-
-	
 </div>
 <div *ngIf="!user">
-	<p>Select a user from the table.</p>
+	<p>Could not find a user.</p>
 </div>
