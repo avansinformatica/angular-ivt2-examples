@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -7,10 +8,9 @@ import { UsersComponent } from './users/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth.guard';
 import { NewUserComponent } from './users/new-user/new-user.component';
+
+import { AuthGuard } from './auth.guard';
 import { SaveGuard } from './save.guard';
 
 /*

@@ -16,10 +16,12 @@ export class HomeComponent implements OnInit {
 
   goToJohn() {
     // straightforward navigation through the router
-    this.router.navigate(['/users', 0]);
+    // note that the url is appended by a parameter, in the browser this shows up
+    // in matrix url notation
+    this.router.navigate(['/users', 0, {from: 'home'}]);
 
     // or use a relative path (example is a bit silly here...)
-    // this.router.navigate(['../users', 0], {relativeTo: this.route});
+    // this.router.navigate(['../users', 0, {fromHome: 'true'}], {relativeTo: this.route});
   }
 
 }
