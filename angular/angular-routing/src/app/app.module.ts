@@ -10,6 +10,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
 
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { NewUserComponent } from './users/new-user/new-user.component';
+import { SaveGuard } from './save.guard';
 
 /*
 Define the routes in this constant.
@@ -18,15 +20,39 @@ that matches from top to bottom.
 */
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
+  
+  // This section of routing has only one main router-outlet
   {path: 'users', component: UsersComponent},
-  // the 'id' is a variable in the route, it can be accessed 
-  // in the UserDetailComponent to display the correct user
   {
+    path: 'users/new', 
+    component: NewUserComponent,
+    canDeactivate: [SaveGuard]
+  },
+  {
+    // the 'id' is a variable in the route, it can be accessed 
+    // in the UserDetailComponent to display the correct user
     path: 'users/:id', 
     component: UserDetailComponent,
     // this route is protected by the AuthGuard class
     canActivate: [AuthGuard]
   },
+
+  /*
+  // This section of routing has nested router-outlet's
+  {path: 'users', component: UsersComponent, children: [
+    {
+      path: 'new', 
+      component: NewUserComponent,
+      canDeactivate: [SaveGuard]
+    },
+    {
+      path: ':id', 
+      component: UserDetailComponent, 
+      canActivate: [AuthGuard]
+    }
+  ]},
+  */
+
   {path: 'dashboard', component: DashboardComponent},
   {path: 'notfound', component: NotfoundComponent},
   // empty route for home
@@ -42,14 +68,17 @@ const routes: Routes = [
     UsersComponent,
     DashboardComponent,
     UserDetailComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    NewUserComponent
   ],
   imports: [
     BrowserModule,
     // include the router module here to set the routes
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthGuard],
+  // guards are provided here, you can find what this means in a 
+  // services example
+  providers: [AuthGuard, SaveGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
