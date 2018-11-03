@@ -5,10 +5,10 @@ function processInput(){
     var value = document.getElementById('myinput').value;
     console.log('value = \'' + value + '\'');
     if (document.getElementById('myinput').value == '') {
-        document.getElementById("result").innerHTML = 'Het veld is leeg!';
+        document.getElementById("result").innerHTML = 'The input was empty!';
     } else {
         // console.log('type is ' + (typeof value));
-        document.getElementById("result").innerHTML = 'De waarde is ' + value;
+        document.getElementById("result").innerHTML = 'The value in input is \'' + value + '\'';
         document.getElementById('myinput').value = '';
     }
 
