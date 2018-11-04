@@ -3,27 +3,27 @@
 Example project that illustrates how to prepare a generated Angular app and deploy it to [Heroku](http://www.heroku.com). 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
 
-To prepare your app for Heroku, you need to add some new files and settings, and alter some existing ones. To do so, follow these steps.
 
 ## Required
 - [Nodejs](https://nodejs.org) installed
 - [Angular CLI](https://github.com/angular/angular-cli) installed
-- [Heroku CLI](http://www.heroku.com) installed
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed
 
-
-
+# Steps
+To prepare your app for Heroku, you need to add some new files and settings, and alter some existing ones. To do so, follow these steps.
 
 ## Update package.json
-Open `package.json` and update the `scripts` section with the following command:
+Open [`package.json`](./package.json) and update the `scripts` section with the following command:
 ```
-    "postinstall": "ng build --prod ",
+"postinstall": "ng build --prod ",
 ```
 
 Move the following packages from `devDependencies` into `dependencies`
 ```
-"@angular/cli": "1.0.0",
-"@angular/compiler-cli": "^4.0.0",
-"typescript": "~2.2.0",
+"@angular-devkit/build-angular": "~0.7.0",
+"@angular/cli": "~6.1.5",
+"@angular/compiler-cli": "^6.1.0",
+"typescript": "~2.7.2",
 ```
 
 
@@ -40,20 +40,17 @@ Add a [server.js](./server.js) file.
 
 
 
-## Build your app in production mode
-
-Run `ng build --prod --aot` to build the project. 
-
-> The build artifacts will be stored in the `dist/{appname}` directory. 
-> Verify that this directory exists! 
-
-> The `--prod` flag triggers a production build. The `--aot` flag triggers a ahead-of-time compilation build.
-
 ## Verify that your app runs in production mode on localhost
+Run a production build to verify your install. 
 ```
 ng build --prod --aot
 node server.js
 ```
+
+> The build artifacts will be stored in the `dist/{appname}` directory. 
+> Verify that this directory exists! 
+> The `--prod` flag triggers a production build. The `--aot` flag triggers a ahead-of-time compilation build.
+
 
 ## Create a new app on Heroku
 
