@@ -1,5 +1,5 @@
 //
-// mijnscript.js
+// script.js
 //
 function processInput(){
     var value = document.getElementById('myinput').value;
@@ -12,11 +12,11 @@ function processInput(){
         document.getElementById('myinput').value = '';
     }
 
-    // Empty fields after 1000 millisec.
+    // Empty fields after 2000 millisec.
     setTimeout(function () {
         document.getElementById("result").innerHTML = '';
         document.getElementById('myinput').value = '';
-    }, 1000);
+    }, 2000);
 }
 
 
