@@ -13,6 +13,8 @@
         app-user-item
         [selectedUser]="user" 
         [index]="i"
+        (click)="onSelect(user, i)"
+        [ngClass]="{'table-active': user == selectedUser}"
         >
 
         <!-- <td>{{ i + 1 }}</td>

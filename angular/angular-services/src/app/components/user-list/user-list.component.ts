@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../users/user.service';
 
 @Component({
@@ -11,9 +11,11 @@ export class UserListComponent implements OnInit {
 
   title = 'Users ListComponent'
   users: any[]
+  selectedUser;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private userService: UserService
   ) { }
 
@@ -21,5 +23,9 @@ export class UserListComponent implements OnInit {
     this.users = this.userService.getUsers();
   }
 
+  onSelect(user, id){
+    this.selectedUser = user;
+    this.router.navigate([id], { relativeTo: this.route })
+  }
 
 }
