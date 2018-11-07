@@ -2,7 +2,7 @@
 
 Example code that demonstrates the use of services.
 
-[alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+[alt text](https://github.com/avansinformatica/angular-ivt2-examples/blob/master/angular/angular-services/doc/angular-services.png "Logo Title Text 1")
 
 ## Overview 
 - Routing with Auth guard
