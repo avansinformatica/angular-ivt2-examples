@@ -1,0 +1,16 @@
+<h2>{{title}}</h2>
+<div *ngIf="user">
+
+	<!-- https://getbootstrap.com/docs/4.1/layout/media-object/ -->
+	<div class="media">
+		<img class="mr-3 circle" src="{{user.picture.large}}" alt="Generic placeholder image">
+		<div class="media-body">
+			<h5 class="mt-0">{{user.name.first | titlecase}} {{user.name.last | titlecase}}</h5>
+			<p>{{user.email}}</p>
+		</div>
+	</div>
+
+</div>
+<div *ngIf="!user">
+	We don't have a user yet.
+</div>
