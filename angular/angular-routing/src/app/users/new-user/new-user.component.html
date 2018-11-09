@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <button class="btn btn-primary">Save</button>
-    <button class="btn btn-danger">Cancel</button>
+    <button class="btn btn-primary" (click)="onSave()">Save</button>
+    <!-- <button class="btn btn-danger">Cancel</button> -->
   </div>
   <hr>
   <div class="row">
     <label for="name">User Name</label>
-    <input id="name" type="text">
+    <input id="name" type="text" [(ngModel)]="name">
   </div>
 </div>
 

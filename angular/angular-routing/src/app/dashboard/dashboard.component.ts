@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../user.model';
-import { users_const } from '../user.constant';
+import { mock_users } from '../user.mock';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +9,7 @@ import { users_const } from '../user.constant';
 })
 export class DashboardComponent implements OnInit {
   // mock data
-  @Input() users: User[] = users_const;
+  @Input() users: User[] = mock_users;
   
   constructor() { }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
-import { users_const } from '../user.constant';
+import { mock_users } from '../user.mock';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +9,7 @@ import { users_const } from '../user.constant';
 })
 export class UsersComponent implements OnInit {
   // mock data
-  users: User[] = users_const;
+  users: User[] = mock_users;
 
   constructor() { }
 

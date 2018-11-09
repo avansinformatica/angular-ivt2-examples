@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/user.model';
-import { users_const } from 'src/app/user.constant';
+import { mock_users } from 'src/app/user.mock';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +21,7 @@ export class UserDetailComponent implements OnInit {
     // '+' is here to turn it into a number
     // is done with an observable in another example
     const id: number = +this.route.snapshot.paramMap.get('id');
-    return users_const[id];
+    return mock_users[id];
 
     // used as a mock when component is not in router-outlet
     // return users_const[this.id];

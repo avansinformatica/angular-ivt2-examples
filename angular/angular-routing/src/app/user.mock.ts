@@ -6,7 +6,7 @@ Some fake data as a constant to display. In other examples
 you can learn how to send data to other components and modules:
 look at services and rxjs.
 */
-export const users_const: User[] = [
+export let mock_users: User[] = [
     new User('John', [
       new Post('Discovering Angular', 'Let\'s learn Angular', 10),
       new Post('Making an app', 'Start with the CLI', 4),

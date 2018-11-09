@@ -8,8 +8,7 @@ export class SaveGuard implements CanDeactivate<NewUserComponent> {
     // this method gets the component we're trying to deactivate, 
     // so you can use it to make the decision
     canDeactivate(component: NewUserComponent): boolean {
-        // here we could check whether there are unsaved changes
-        // in the component, look in the forms example
-        return false;
+        // here we do a very simple check whether there are no unsaved changes
+        return component.isSaved;
     }
 }
