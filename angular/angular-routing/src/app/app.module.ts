@@ -23,22 +23,22 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   
   // This section of routing has only one main router-outlet
-  {path: 'users', component: UsersComponent},
-  {
-    path: 'users/new', 
-    component: NewUserComponent,
-    canDeactivate: [SaveGuard]
-  },
-  {
-    // the 'id' is a variable in the route, it can be accessed 
-    // in the UserDetailComponent to display the correct user
-    path: 'users/:id', 
-    component: UserDetailComponent,
-    // this route is protected by the AuthGuard class
-    canActivate: [AuthGuard]
-  },
+  // {path: 'users', component: UsersComponent},
+  // {
+  //   path: 'users/new', 
+  //   component: NewUserComponent,
+  //   canDeactivate: [SaveGuard]
+  // },
+  // {
+  //   // the 'id' is a variable in the route, it can be accessed 
+  //   // in the UserDetailComponent to display the correct user
+  //   path: 'users/:id', 
+  //   component: UserDetailComponent,
+  //   // this route is protected by the AuthGuard class
+  //   canActivate: [AuthGuard]
+  // },
 
-  /*
+  // /*
   // This section of routing has nested router-outlet's
   {path: 'users', component: UsersComponent, children: [
     {
@@ -52,7 +52,7 @@ const routes: Routes = [
       canActivate: [AuthGuard]
     }
   ]},
-  */
+  // */
 
   {path: 'dashboard', component: DashboardComponent},
   {path: 'notfound', component: NotfoundComponent},
