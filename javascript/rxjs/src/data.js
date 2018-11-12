@@ -1,4 +1,5 @@
 const faker = require('faker');
+const {Observable} = require('rxjs');
 
 
 function generate_user() {
@@ -33,6 +34,34 @@ function generate_users_callback(cb_func, amount = 300000) {
 			cb_func(generate_user());
 		}, 0);
 	}
+}
+
+
+// generate a random number between 0 and 1000
+function random_number() {
+	return Math.round(Math.random() * 1000);
+}
+
+// recursively set a timeout with a new number
+function set_next(observer) {
+	let delay = random_number();
+	let result = random_number();
+	setTimeout(() => {
+		observer.next(result);
+		set_next(observer);
+	}, delay);
+}
+
+// an observable that randomly generates numbers
+function make_number_observable() {
+	return Observable.create((observer) => {
+		set_next(observer);
+	});
+}
+
+// an observable that randomly generates tweets
+function make_tweet_observable() {
+	
 }
 
 
@@ -26912,5 +26941,6 @@ const movies = [
 ]
 
 module.exports = {
-	movies, generate_users, generate_users_callback
+	movies, generate_users, generate_users_callback,
+	make_number_observable, make_tweet_observable
 };

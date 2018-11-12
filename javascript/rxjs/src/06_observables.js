@@ -40,4 +40,4 @@ let filtered$ = users$.pipe(
 // no code has run here! we need to subscribe to the
 // observable to start the filtering and mapping process
 
-filtered$.subscribe((name) => console.log(name));
+filtered$.subscribe(console.log);
