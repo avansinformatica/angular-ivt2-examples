@@ -1,15 +1,42 @@
+const faker = require('faker');
 
-const data = [{
-	title: 'hier de titel',
-	year: 1990
-}, {
-	title: 'hier de titel 2',
-	year: 1934
-}, {
-	title: 'hier de titel 3',
-	year: 1989
-}]
 
+function generate_user() {
+	return {
+		firstName: faker.name.firstName(),
+		lastName: faker.name.lastName(),
+		jobTitle: faker.name.jobTitle(),
+		country: faker.address.country()
+	};
+}
+
+// a function that generates an array of fake users
+function generate_users(amount = 300000) {
+	faker.seed(1234);
+
+	let users = [];
+
+	for(let i = 0; i<amount; i++) {
+		users.push(generate_user())
+	}
+
+	return users;
+}
+
+// a function that generates users and calls the callback function for 
+// each generated user
+function generate_users_callback(cb_func, amount = 300000) {
+	faker.seed(1234);
+
+	for(let i = 0; i<amount; i++) {
+		setTimeout(() => {
+			cb_func(generate_user());
+		}, 0);
+	}
+}
+
+
+// a fixed movie dataset
 const movies = [
 	{ 
 		title: "All Over Me",
@@ -26885,5 +26912,5 @@ const movies = [
 ]
 
 module.exports = {
-	data, movies
+	movies, generate_users, generate_users_callback
 };
