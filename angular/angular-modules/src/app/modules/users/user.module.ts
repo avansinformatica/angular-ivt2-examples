@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
 import { ModuleWithProviders } from '@angular/core/src/metadata/ng_module';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './user.component';
