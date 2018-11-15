@@ -18,7 +18,8 @@ const {generate_users} = require('./data');
 
 // create the observable from all users
 // each user will be a new piece of data
-// the '$' denotes that it's an observable
+// the '$' denotes that it's an observable 
+// (just a code convention, not functional)
 let users = generate_users();
 let users$ = from(users);
 

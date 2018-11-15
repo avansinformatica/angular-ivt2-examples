@@ -12,7 +12,7 @@ const {filter, map, delay, tap, count, take, distinct} = require('rxjs/operators
 // EXAMPLE 1
 // our own observable
 let mine$ = Observable.create(function(observer) {
-    // this sends the next piece of data through the observable
+    // this sends the next pieces of data through the observable
     observer.next('hello');
     observer.next('world!');
 });
@@ -74,10 +74,17 @@ aggr$.pipe(
 
 
 // EXAMPLE 5
-// an observable can only emit distinct values
+// an observable may only emit distinct values if needed
 let distinct$ = from([1, 1, 2, 2, 3, 3]);
 
 distinct$.pipe(
     distinct()
 )
 .subscribe(console.log);
+
+// With separate handler functions
+distinct$.subscribe(
+    next = result => console.log('result: ' + result),
+    error = msg => console.log('error: ' + msg),
+    complete = console.log('done')
+)

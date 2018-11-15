@@ -26,9 +26,9 @@ let chained_promise = new Promise((resolve, reject) => {
 // return something!
 // no indendation when chaining promises
 chained_promise
-    .then((users) => 
-        users.filter((user) => user.country === 'Netherlands')
-    )
+    .then((users) => {
+        return users.filter((user) => user.country === 'Netherlands');
+    })
     .then((users) => 
         users.filter((user) => user.jobTitle.includes('Manager'))
     )
