@@ -20,19 +20,19 @@ export class UserService {
 
   public getUsers(): Observable<User[]> {
     return this.http.get(environment.apiUrl).pipe(
-      // convert incoming string to json
+      // convert incoming responsestring to json
       map(response => response.json()),
       // get only the results property
       map(response => response.results),
-      // optional: log the results
-      tap(console.log),
+      // optionally log the results
+      // tap(console.log),
       // convert json array to User array
       map(users => users.map(data => new User(data))),
-      // optional: log the results
+      // optionally log the results
       tap(console.log)
-      // ,
-      // optional: simulate extra delay
-      // delay(2000)
+
+      // all of the above could have been done in one:
+      // map(response => response.json().results.users.map(data => new User(data)))
     );
   }
 
