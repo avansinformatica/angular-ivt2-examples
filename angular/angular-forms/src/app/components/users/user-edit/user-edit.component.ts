@@ -54,16 +54,13 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  saveUser(): void {
-    console.log('Save user');
+  onSubmit() { 
+    this.submitted = true;
+    console.log('onSubmit');
     // Save user via the service
     // Then navigate back to display view (= UserDetails).
     // The display view must then show the new or edited user.
     this.router.navigate(['..'], { relativeTo: this.route });
-  }
-
-  onSubmit() { 
-    this.submitted = true;
   }
 
 }

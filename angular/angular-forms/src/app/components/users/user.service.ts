@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map, tap, delay } from 'rxjs/operators';
+import { map, tap, take } from 'rxjs/operators';
 import { User } from './user.model';
 import { Http } from '@angular/http';
 import { environment } from 'src/environments/environment.prod';
