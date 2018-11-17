@@ -1,9 +1,18 @@
-# Angular Material example
+# Angular Routing app
 
-This example follows the manual that was described in the corresponding [article at Medium.com](https://medium.com/codingthesmartway-com-blog/angular-material-and-angular-6-material-design-for-angular-6b1a3ee476f0).
+Angular app that demonstrates routing. This app is connected to the serverside application that is [available in this repo](https://github.com/avansinformatica/nosql-ivt2-examples/tree/master/nodejs-persons-server).
 
-## Installing, building and running
+ The app retrieves its data via an online API available [online at Heroku](https://node-persons-server.herokuapp.com/api-docs).
+
+## Requirements
+- nodejs and npm
+
+## Usage
+Fork this repo and clone your copy onto your local machine. 
+Then run
 ```
 npm install
 npm start
 ```
+
+

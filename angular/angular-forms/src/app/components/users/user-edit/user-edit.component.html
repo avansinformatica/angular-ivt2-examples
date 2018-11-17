@@ -1,0 +1,100 @@
+<div class="sticky-component">
+  <div class="row">
+    <div class="col">
+      <h2>{{title}}</h2>
+    </div>
+    <div class="col">
+      <button 
+        type="button" 
+        class="btn btn-outline-warning float-right" 
+        routerLink='..'
+      >Cancel
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-success float-right" 
+        (click)="saveUser()"
+      >Save
+      </button>
+    </div>
+  </div> 
+
+  <div class="row">
+
+    <div class="col">
+      <!-- Debug: display editmode -->
+      <p>Edit mode = {{ editMode | json }}</p>  
+      <div *ngIf="editMode">
+        <p *ngIf="id >= 0">Edit existing data for user {{id}}</p>
+      </div>
+      <div *ngIf="!editMode">
+        <p>Display the form to create a new User.</p>
+      </div>
+
+      <form 
+        *ngIf="user"
+        #f="ngForm"
+        name="form" 
+        (ngSubmit)="f.form.valid && onSubmit()"
+        novalidate
+      >
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input 
+          type="text"
+          class="form-control"
+          [(ngModel)]="user?.name.first"
+          name="firstName"
+          #firstName="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }"
+          required
+        />
+        <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+          <div *ngIf="firstName.errors.required">First Name is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          [(ngModel)]="user?.name.last"
+          #lastName="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }"
+          required
+        />
+        <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+          <div *ngIf="lastName.errors.required">Last Name is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          name="email"
+          [(ngModel)]="user.email"
+          email="ngModel"
+          [ngClass]="{ 'is-invalid': f.submitted && email.invalid }"
+          required
+        />
+        <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary">Save</button>
+      </div>
+
+      </form>
+    </div>
+  </div>
+  <pre *ngIf="user">
+    <!-- {{ user | json }} -->
+  </pre>
+</div>
