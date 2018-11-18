@@ -9,6 +9,7 @@ import { UsersComponent } from './users.component';
 import { UserItemComponent } from './user-list/user-item/user-item.component';
 import { UserNotfoundComponent } from './user-notfound/user-notfound.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
+    NgbModule,  
     UserRoutingModule   // Order is important, MUST be BEFORE AppRoutingModule!
     // AppRoutingModule  // NO import of AppRoutingModule - would overwrite previous routes!
   ],

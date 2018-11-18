@@ -1,10 +1,31 @@
+export enum Gender {
+	'male' = 0,
+	'female',
+	'unknown' 
+}
+
+export enum Title {
+	'mr.',
+	'ms',
+	'miss',
+	'mrs',
+	'monsieur',
+	'madame',
+	'mademoiselle',
+	'unknown'
+}
+
 export class User {
 
-	gender: string;
+	gender: Gender = Gender.unknown;
 	name: {
-		title: string;
+		title: Title;
 		first: string;
 		last: string
+	} = {
+		title: Title.unknown,
+		first: '',
+		last: ''
 	};
 	location: {
 		street: string;
@@ -18,9 +39,9 @@ export class User {
 		timezone: {
 			offset: string;
 			description: string
-		}
+		};
 	};
-	email: string;
+	email: string = '';
 	login: {
 		uuid: string;
 		username: string;

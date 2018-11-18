@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { map, tap, take } from 'rxjs/operators';
 import { User } from './user.model';
 import { Http } from '@angular/http';

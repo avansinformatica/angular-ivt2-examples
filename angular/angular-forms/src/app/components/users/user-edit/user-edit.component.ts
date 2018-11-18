@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
-import { UserService } from '../user.service';
+import { UserService } from '../users.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -43,14 +43,9 @@ export class UserEditComponent implements OnInit {
         }
       });
     } else {
+      // Create a new empty user. The required properties are filled 
+      // with empty values by the usermodel.
       this.user = new User();
-      // {
-      //   name: {
-      //     first: 'robin',
-      //     last: 'schellius'
-      //   },
-      //   email: 'rschel@server.nl'
-      // })
     }
   }
 
