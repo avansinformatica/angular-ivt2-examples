@@ -46,7 +46,10 @@ export class UserEditComponent implements OnInit {
           // Subscribe for available users. Once users are available we get our specific user.
           this.userService.usersAvailable.subscribe(userAvailable => {
             if (userAvailable) {
-              this.user = this.userService.getUser(+params['id']);
+              const user = this.userService.getUser(+params['id']);
+              // make local copy of user - detached from original array
+              this.user = new User(JSON.parse(JSON.stringify(user)));
+              // local date of birth - for ngbDatePicker
               this.dob = { year: '1980', month: '10', day: '28' };
             }
           })
@@ -68,7 +71,15 @@ export class UserEditComponent implements OnInit {
     // The display view must then show the new or edited user.
 
     console.dir(this.user);
-
+    if(this.user._id) {
+      this.userService.updateUser(this.user);
+    } else {
+      this.userService.createUser(this.user).subscribe(
+        data => console.log(data)
+        // ,
+        // error => console.error(error)
+      );
+    }
 
     this.router.navigate(['..'], { relativeTo: this.route });
   }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
@@ -10,6 +10,7 @@ import { UserItemComponent } from './user-list/user-item/user-item.component';
 import { UserNotfoundComponent } from './user-notfound/user-notfound.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    // HttpModule,
+    HttpClientModule,
     NgbModule,  
     UserRoutingModule   // Order is important, MUST be BEFORE AppRoutingModule!
     // AppRoutingModule  // NO import of AppRoutingModule - would overwrite previous routes!

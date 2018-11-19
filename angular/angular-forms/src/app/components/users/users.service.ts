@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { map, tap, take } from 'rxjs/operators';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { map, tap, retry, catchError } from 'rxjs/operators';
 import { User } from './user.model';
-import { Http } from '@angular/http';
-import { environment } from 'src/environments/environment.prod';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +15,12 @@ export class UserService {
   usersAvailable = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private http: Http
+    private http: HttpClient
   ) { console.log('UserService constructed');  }
 
   public getUsers(): Observable<User[]> {
     console.log('getUsers');
-    return this.http.get(`${environment.apiUrl}/api/persons?offset=0&amount=8`).pipe(
+    return this.http.get<ApiResponse>(`${environment.apiUrl}/api/persons?offset=0&amount=8`).pipe(
       //   convert incoming responsestring to json
       // map(response => response.json()),
       //   get only the results property
@@ -33,7 +33,7 @@ export class UserService {
       // tap(console.log)
 
       // all of the above can also be done in one operation:
-      map(response => response.json().results.map(data => new User(data))),
+      map(response => response.results.map(data => new User(data))),
       tap(users => {
         this.users = users;
         this.usersAvailable.next(true);
@@ -46,10 +46,57 @@ export class UserService {
 
     if(this.users && id >= 0 && id < this.users.length){
       // id is valid and users are available
+
+      // this returns a reference to the original array item!
+      // https://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-deep-clone-an-object-in-javascript
       return this.users[id];
     } else {
       return undefined;
     }
   }
 
+  createUser(user: User) {
+    console.log('createUser');
+    return this.http.post(`${environment.apiUrl}/api/persons`, user)
+      .pipe(
+        // retry(3), // retry a failed request up to 3 times
+        catchError(this.handleError), // then handle the error
+        tap( // Log the result or error
+          data => console.log(data)
+          // ,
+          // error => console.error(error)
+        )
+      );
+
+  }
+
+  updateUser(user: User){
+    console.log('updateUser');
+    return this.http.put(`${environment.apiUrl}/api/persons/${user._id}`, user);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.message}`);
+      console.dir(error);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
+}
+
+/**
+ * This interface specifies the structure of the expected API server response. 
+ */
+export interface ApiResponse {
+  results: any[];
 }

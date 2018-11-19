@@ -17,6 +17,7 @@ export enum Title {
 
 export class User {
 
+	_id: string;
 	gender: Gender = Gender.unknown;
 	name: {
 		title: Title;
@@ -65,6 +66,10 @@ export class User {
 		large: string;
 		medium: string;
 		thumbnail: string
+	} = {
+		large: './assets/images/anonymous-person.png',
+		medium: './assets/images/anonymous-person.png',
+		thumbnail: './assets/images/anonymous-person.png'
 	};
 	nat: string
 
