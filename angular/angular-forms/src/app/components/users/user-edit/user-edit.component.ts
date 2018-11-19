@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../users.service';
+import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-edit',
@@ -17,6 +18,14 @@ export class UserEditComponent implements OnInit {
   id: number;
   user: User;
   submitted = false;
+  dob;
+
+  nationalities = [
+    'Netherlands',
+    'German',
+    'France',
+    'United Kingdom'
+  ]
 
   constructor(
     private userService: UserService,
@@ -38,6 +47,7 @@ export class UserEditComponent implements OnInit {
           this.userService.usersAvailable.subscribe(userAvailable => {
             if (userAvailable) {
               this.user = this.userService.getUser(+params['id']);
+              this.dob = { year: '1980', month: '10', day: '28' };
             }
           })
         }
@@ -49,12 +59,17 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  onSubmit() { 
+  onSubmit() {
     this.submitted = true;
     console.log('onSubmit');
+
     // Save user via the service
     // Then navigate back to display view (= UserDetails).
     // The display view must then show the new or edited user.
+
+    console.dir(this.user);
+
+
     this.router.navigate(['..'], { relativeTo: this.route });
   }
 

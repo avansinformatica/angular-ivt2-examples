@@ -36,13 +36,3 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ]
 })
 export class UsersModule { }
-
-// export class UsersModule {
-//   static forRoot(): ModuleWithProviders {
-//     return {
-//       ngModule: UsersModule,
-//       providers: [UsersService]
-//     };
-//   }
-// }
-

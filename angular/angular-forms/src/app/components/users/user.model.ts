@@ -52,11 +52,11 @@ export class User {
 		sha256: string
 	};
 	dob: {
-		date: string;
+		date: Date;
 		age: number
 	};
 	registered: {
-		date: string;
+		date: Date;
 		age: number
 	};
 	phone: string;
