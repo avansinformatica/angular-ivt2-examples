@@ -21,10 +21,12 @@ export class UserEditComponent implements OnInit {
   dob;
 
   nationalities = [
-    'Netherlands',
-    'German',
-    'France',
-    'United Kingdom'
+    { country: 'Netherlands', code: 'NL' },
+    { country: 'Germany', code: 'DE'},
+    { country: 'France', code: 'FR' },
+    { country: 'Spain', code: 'ES' },
+    { country: 'Canada', code: 'CA' },
+    { country: 'United Kingdom', code: 'UK'}
   ]
 
   constructor(

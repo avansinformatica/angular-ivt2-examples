@@ -134,7 +134,7 @@
     </div>
 
     <div class="form-row">
-      <div class="form-group col-lg-12">
+      <div class="form-group col-lg-6">
         <label for="birthdate">Birthdate</label>
         <div class="input-group">
           <input
@@ -175,8 +175,11 @@
           #nationality="ngModel"
         >
           <option selected>Choose...</option>
-          <option *ngFor="let nat of nationalities" [value]="nat">
-            {{nat}}
+          <option
+            *ngFor="let nat of nationalities"
+            [value]="nat.code"
+          >
+            {{nat.country}}
           </option>
         </select>
       </div>
