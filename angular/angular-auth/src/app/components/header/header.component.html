@@ -9,12 +9,12 @@
     <div class="collapse navbar-collapse" id="navbarsExample07">
       <ul class="navbar-nav mr-auto">
 
-        <!-- Dashboard -->
+        <!-- Dashboard - always accessible to all users -->
         <li class="nav-item">
           <a class="nav-link" routerLink="'/dashboard'" [routerLinkActive]="['active']" href="#">Dashboard</a>
         </li>
 
-        <!-- Users - if user is loggedin -->
+        <!-- Users - visible if user is loggedin -->
         <li *ngIf="isLoggedIn$ | async" ngbDropdown class="nav-item dropdown">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Users</a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -31,23 +31,12 @@
         </li>
       </ul>
 
-      <!-- <ul *ngIf="!isLoggedIn$ | async as isLoggedIn" class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" href="#">Sign in</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/register" href="#">Sign up</a>
-        </li>
-      </ul> -->
-
-      
+      <!-- Authentication/user profile menu -->
       <ul  class="navbar-nav">
-
-        <li *ngIf="!isLoggedIn$ | async as isLoggedIn" class="nav-item">
-        <!-- <li *ngIf="!isLoggedIn$ | async as isLoggedIn" class="nav-item"> -->
+        <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
           <a class="nav-link" routerLink="/login" href="#">Sign in</a>
         </li>
-        <li *ngIf="!isLoggedIn$ | async as isLoggedIn" class="nav-item">
+        <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
           <a class="nav-link" routerLink="/register" href="#">Sign up</a>
         </li>
 
@@ -62,7 +51,6 @@
         </li>
 
       </ul>
-
     </div>
   </div>
 </nav>

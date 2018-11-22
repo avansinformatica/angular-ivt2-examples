@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { map, tap } from 'rxjs/operators';
+import { AlertService } from 'src/app/modules/alert/alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,7 @@ export class AuthService {
    * @param http 
    */
   constructor(
+    private alertService: AlertService,
     private router: Router,
     private http: Http
   ) {
@@ -71,19 +73,19 @@ export class AuthService {
         next: response => {
           const currentUser = new User(response);
           console.dir(currentUser);
+          this.saveCurrentUser(currentUser, response.token);
+          
+          // Notify all listeners that we're logged in.
+          this.isLoggedInUser.next(true);
+          this.loggedInUserName.next(currentUser.fullName);
+          currentUser.hasRole(UserRole.Admin).subscribe(result => this.isAdminUser.next(result));
+          currentUser.hasRole(UserRole.Basic).subscribe(result => this.isPlainUser.next(result));
 
-            this.saveCurrentUser(currentUser, response.token);
-            
-            // Notify all listeners that we're logged in.
-            this.isLoggedInUser.next(true);
-            this.loggedInUserName.next(currentUser.fullName);
-            currentUser.hasRole(UserRole.Admin).subscribe(result => this.isAdminUser.next(result));
-            currentUser.hasRole(UserRole.Basic).subscribe(result => this.isPlainUser.next(result));
-
-            //
-            // If redirectUrl exists, go there
-            // this.router.navigate([this.redirectUrl]);
-            // return true;
+          this.alertService.success('U bent ingelogd');
+          //
+          // If redirectUrl exists, go there
+          // this.router.navigate([this.redirectUrl]);
+          // return true;
         },
         error: err => {
           console.error('Error logging in: ' + err);
@@ -99,7 +101,8 @@ export class AuthService {
     localStorage.removeItem(this.currentUser);
     localStorage.removeItem(this.currentToken);
     this.isLoggedInUser.next(false);
-    this.router.navigate(['/']);
+    this.isAdminUser.next(false);
+    this.alertService.success('U bent uitgelogd');
   }
 
   /**

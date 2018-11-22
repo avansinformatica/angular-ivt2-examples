@@ -111,7 +111,9 @@ export class User {
 	// nationality
 	nat: string;
 	// Authentication roles
-	roles: UserRole[];
+	roles: UserRole[] = [
+		UserRole.Basic
+	];
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);
