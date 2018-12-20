@@ -2,17 +2,21 @@
 <h3>All Images</h3>
 
 <div *ngIf="images">
-  <div *ngFor="let image of images; let i = index">
-    <!-- <p>{{image.info.imagename}}</p> -->
-    <img
-      src="{{image.image}}"
-      alt=""
-      style="border: 1px solid black; padding: 4px;"
-      height="160px"
-    >
+  <div class="row">
+    <div *ngFor="let image of images; let i = index">
+      <div class="col">
+        <img
+          src="{{image.data}}"
+          alt=""
+          class="picture"
+          height="160px"
+        >
+        <p class="picture">{{image.info.description}}</p>
+      </div>
+    </div>
   </div>
-
 </div>
+
 <div *ngIf="!images || images.length === 0">
   <p>No images found. Upload an image first</p>
 </div>

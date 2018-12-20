@@ -9,7 +9,7 @@ export class Image {
 		category: string;
 	}
 	// Base64 string representing the binary image
-	image: string;
+	data: string;
 
 	constructor(values: Object = {}) {
 		Object.assign(this, values);

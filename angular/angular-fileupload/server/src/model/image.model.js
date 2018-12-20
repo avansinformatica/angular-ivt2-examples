@@ -17,7 +17,7 @@ const ImageSchema = new Schema({
             required: [true, 'category is required.']
         }
     },
-    image: {
+    data: {
         type: String,
         required: [true, 'image is required.']
     }

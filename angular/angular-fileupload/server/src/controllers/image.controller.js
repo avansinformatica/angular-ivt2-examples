@@ -20,7 +20,7 @@ module.exports = {
                 description: req.body.description,
                 category: req.body.category
             },
-            image: req.body.image
+            data: req.body.data
         }
 
         // Create the image

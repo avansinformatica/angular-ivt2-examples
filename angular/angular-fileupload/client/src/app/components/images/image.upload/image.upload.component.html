@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-9">
+  <div class="col-12">
     <h3>Image Upload</h3>
     <p class="lead">
       Select an file to be uploaded to the server. The uploaded file will be stored in the database.
@@ -12,105 +12,96 @@
 
     <h3>File attributes</h3>
     <p>Select a file first. Then fill in some additional file attributes. These will be stored in the database.</p>
-    <div>
-      <form [formGroup]="imageForm">
+    <div class="row">
+      <div class="col-6">
 
-        <div class="form-group row">
-          <label for="imagename" class="col-3 col-form-label">File</label>
-          <div class="col-9">
-            <input
-              type="file"
-              id="file"
-              (change)="onSelectFile($event)"
-              required
-              >
-            <img
-              *ngIf="imageSrc"
-              [src]="imageSrc"
-              height="60px"
-              style="border: 1px solid black; padding: 4px;"
-            >
+        <form [formGroup]="imageForm">
+
+          <div class="form-group row">
+            <label for="imagename" class="col-3 col-form-label">File</label>
+            <div class="col-9">
+              <input
+                type="file"
+                id="file"
+                (change)="onSelectFile($event)"
+                required
+                >
+            </div>
           </div>
+
+          <div class="form-group row">
+            <label for="imagename" class="col-3 col-form-label">Image name</label>
+            <div class="col-9">
+              <input
+                type="text"
+                class="form-control"
+                id="imagename"
+                formControlName="imagename"
+                name="course"
+                placeholder="Additional image file name"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="description" class="col-3 col-form-label">Description
+            </label>
+            <div class="col-9">
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                formControlName="description"
+                name="module"
+                placeholder="Additional image description"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="category" class="col-3 col-form-label">Category</label>
+            <div class="col-6">
+              <select
+                class="form-control"
+                name="category"
+                required
+                formControlName="category"
+              >
+                <option
+                  *ngFor="let category of categories"
+                  [ngValue]="category.value"
+                >{{ category.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputType" class="col-3 col-form-label"></label>
+            <div class="col-4">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="uploadFile()"
+                [disabled]="!imageForm.valid"
+                >
+                <span class="glyphicon glyphicon-plus"></span> Upload
+              </button>
+            </div>
         </div>
 
-        <div class="form-group row">
-          <label for="imagename" class="col-3 col-form-label">Image name</label>
-          <div class="col-9">
-            <input
-              type="text"
-              class="form-control"
-              id="imagename"
-              formControlName="imagename"
-              name="course"
-              placeholder="Additional image file name"
-              required
-            >
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="description" class="col-3 col-form-label">Description
-          </label>
-          <div class="col-9">
-            <input
-              type="text"
-              class="form-control"
-              id="description"
-              formControlName="description"
-              name="module"
-              placeholder="Additional image description"
-              required
-            >
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="category" class="col-3 col-form-label">Category</label>
-          <div class="col-sm-4">
-            <select
-              class="form-control"
-              name="category"
-              required
-              formControlName="category"
-            >
-              <option
-                *ngFor="let category of categories"
-                [ngValue]="category.value"
-              >{{ category.name }}
-            </option>
-            </select>
-          </div>
-          <div class="col-1"></div>
-          <label for="inputType" class="col-1 col-form-label">Filesize</label>
-          <div class="col-2">
-            <!-- <p *ngIf="uploader.queue?.length > 0 && uploader.options.isHTML5" class="col-form-label">{{ uploader.queue[0]?.file?.size/1024/1024 | number:'.2' }} MB</p> -->
-          </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputType" class="col-3 col-form-label"></label>
-          <div class="col-2">
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="uploadFile()"
-              [disabled]="!imageForm.valid"
-              >
-              <span class="glyphicon glyphicon-upload"></span> Upload
-            </button>
-          </div>
-        </div>
       </form>
+      </div>
+      <div class="col-3">
+        <img
+          *ngIf="imageSrc"
+          [src]="imageSrc"
+          width="350px"
+          style="border: 1px solid black; padding: 4px;">
+      </div>
     </div>
+
   </div>
-
-  <!-- Optional logging/debugging info -->
-
-  <!-- <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">imageInfo debug</h5>
-  <p>imagename: {{ imageForm.controls.imagename.value }}</p>
-  <p>description: {{ imageForm.controls.description.value }}</p>
-  <p>category: {{ imageForm.controls.category.value }}</p>
-  <p>image: {{ imageForm.controls.image.value }}</p>
-    </div>
-  </div> -->
-
 </div>

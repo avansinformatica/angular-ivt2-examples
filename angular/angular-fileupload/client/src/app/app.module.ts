@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageListComponent } from './components/images/image.list/image.list.component';
 import { ImageUploadComponent } from './components/images/image.upload/image.upload.component';
+import { AlertModule } from './components/alert/alert.module';
+import { AlertService } from './components/alert/alert.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import { ImageUploadComponent } from './components/images/image.upload/image.upl
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
+    AlertModule,
     HttpClientModule    
   ],
-  providers: [],
+  providers: [AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

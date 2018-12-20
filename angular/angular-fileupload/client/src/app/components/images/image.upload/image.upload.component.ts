@@ -3,6 +3,7 @@ import { ImageService } from 'src/app/components/images/image.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Image } from '../image.model';
 import { Router } from '@angular/router';
+import { AlertService } from '../../alert/alert.service';
 
 @Component({
   selector: 'app-file-upload-body',
@@ -21,7 +22,7 @@ export class ImageUploadComponent implements OnInit {
   ]
 
   imageForm = new FormGroup({
-    image: new FormControl(''),
+    data: new FormControl(''),
     imagename: new FormControl(''),
     description: new FormControl(''),
     category: new FormControl('')
@@ -29,6 +30,7 @@ export class ImageUploadComponent implements OnInit {
 
   constructor(
     private imageService: ImageService,
+    private alertService: AlertService,
     private router: Router
   ) { }
 
@@ -52,7 +54,7 @@ export class ImageUploadComponent implements OnInit {
         // set the image value to the Base64 string -> can be saved in dtb
         this.imageForm.patchValue({ 
           imagename: imageFile.name,
-          image: reader.result
+          data: reader.result
         })
         // set the image src -> so that it can be displayed as preview
         this.imageSrc = reader.result as string;
@@ -70,10 +72,12 @@ export class ImageUploadComponent implements OnInit {
         data => {
           console.log('Success!');
           this.router.navigate(['/images'])
+          this.alertService.success('Image added successfully.')
         }, 
         error => {
           console.log(error);
           // Better handle this error, display message or alertbox!
+          this.alertService.error('<strong>Connection error:</strong> ' + error + '<br/>(Is de server bereikbaar?)')
         });
   }
 }
