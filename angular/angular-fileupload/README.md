@@ -1,7 +1,12 @@
 # Angular Image upload example
 
 Angular app that demonstrates uploading of images to a nodejs server connected to a MongoDb database. 
-This package contains both the server and the client.
+The images are stored as base64 strings in the database.
+
+As an example, this package hosts both the server and the client.
+
+![screen print](https://github.com/avansinformatica/angular-ivt2-examples/blob/master/angular/angular-fileupload/doc/imageupload.png)
+
 
 ## Requirements
 - nodejs and npm
