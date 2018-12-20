@@ -5,20 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-import { UploadFileComponent } from './components/images/upload.form/upload.file.component';
-import { UploadFileBodyComponent } from './components/images/upload.reqbody/upload.file.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageListComponent } from './components/images/image.list/image.list.component';
+import { ImageUploadComponent } from './components/images/image.upload/image.upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HeaderComponent,
-    UploadFileComponent,
-    UploadFileBodyComponent,
+    ImageUploadComponent,
     ImageListComponent
   ],
   imports: [
@@ -27,7 +24,6 @@ import { ImageListComponent } from './components/images/image.list/image.list.co
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
-    FileUploadModule,
     HttpClientModule    
   ],
   providers: [],

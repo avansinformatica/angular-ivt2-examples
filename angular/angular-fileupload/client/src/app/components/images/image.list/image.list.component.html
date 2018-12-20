@@ -1,3 +1,18 @@
-<p>
-  image.list works!
-</p>
+
+<h3>All Images</h3>
+
+<div *ngIf="images">
+  <div *ngFor="let image of images; let i = index">
+    <!-- <p>{{image.info.imagename}}</p> -->
+    <img
+      src="{{image.image}}"
+      alt=""
+      style="border: 1px solid black; padding: 4px;"
+      height="160px"
+    >
+  </div>
+
+</div>
+<div *ngIf="!images">
+  <p>No images found. Upload an image first</p>
+</div>

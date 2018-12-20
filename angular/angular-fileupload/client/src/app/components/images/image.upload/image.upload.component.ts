@@ -7,9 +7,9 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-file-upload-body',
-  templateUrl: './upload.file.component.html'
+  templateUrl: './image.upload.component.html'
 })
-export class UploadFileBodyComponent implements OnInit {
+export class ImageUploadComponent implements OnInit {
   
   imageSrc: string = undefined;
 
@@ -33,9 +33,6 @@ export class UploadFileBodyComponent implements OnInit {
     private router: Router
   ) { }
 
-  /**
-   * 
-   */
   ngOnInit() { }
 
   /**

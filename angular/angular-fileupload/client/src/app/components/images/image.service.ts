@@ -25,10 +25,18 @@ export class ImageService {
    * 
    * @param formData 
    */
-  public uploadImage(image: Image): Observable<boolean> {
-    console.log('uploadFile')
-    console.dir(image)
-    return this.http.post(`http://localhost:4200/api/images`, image, this.httpOptions)
+  public uploadImage(data): Observable<boolean> {
+    console.log('uploadImage')
+    console.dir(data)
+
+    // const data  = {
+    //   imagename: image.info.imagename,
+    //   description: 'test',
+    //   category: 'test',
+    //   image: 'asdkjasglkjadfsglkajrfglkj'
+    // }
+
+    return this.http.post(`http://localhost:4200/api/images`, data, this.httpOptions)
       .pipe(
         map(() => { return true; }),
         catchError(this.handleError)
@@ -42,28 +50,13 @@ export class ImageService {
     console.log('getImages');
     return this.http.get<ApiResponse>(`${environment.serverUrl}/images`)
     .pipe(
-      //   convert incoming responsestring to json
-      // map(response => response.json()),
-      //   get only the results property
-      // map(response => response.results),
-      //   optionally log the results
-      // tap(console.log),
-      //   convert json array to Image array
-      // map(users => users.map(data => new Image(data))),
-      //   optionally log the results
-      // tap(console.log)
-      catchError(this.handleError), // then handle the error
-      // tap( // Log the result or error
-      //   data => console.log(data),
-      //   error => console.error('NU HIER: ' + error)
-      // ),
+      tap(console.log),
+      map(images => images.results.map(data => new Image(data))),
+      // log the results
+      tap(console.dir),
       // all of the above can also be done in one operation:
-      map(response => response.results.map(data => new Image(data))),
-      tap(users => {
-        // this.users = users;
-        // this.usersAvailable.next(true);
-      })
-      // error => console.log(error))
+      // map(response => response.results.map(data => new Image(data))),
+      catchError(this.handleError), // then handle the error
     );
   }
 

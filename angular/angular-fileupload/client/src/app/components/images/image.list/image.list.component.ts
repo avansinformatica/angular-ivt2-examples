@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ImageService } from '../image.service';
+import { Image } from '../image.model';
 
 @Component({
   selector: 'app-image-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageListComponent implements OnInit {
 
-  constructor() { }
+  images: Image[];
+
+  constructor(
+    private imageService: ImageService
+  ) { }
 
   ngOnInit() {
+    this.imageService.getImages().subscribe(images => this.images = images)
   }
 
 }
