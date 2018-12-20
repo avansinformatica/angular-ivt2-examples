@@ -19,12 +19,12 @@ let uploaddir = path.join(__dirname, path.sep, '..', path.sep, staticfolder)
 //
 fs.mkdir(uploaddir, (err) => {
     if(err) {
-        logger.warn('Could not create folder ' + uploaddir + ': ' + err.toString())
+        logger.warn(err.toString())
     } 
     uploaddir = path.join(uploaddir, path.sep, imagefolder)
     fs.mkdir(uploaddir, (err) => {
         if(err) {
-            logger.warn('Could not create folder ' + uploaddir + ': ' + err.toString())
+            logger.warn(err.toString())
         } else {
             logger.info('Created ' + uploaddir + ' folder for file image uploads')
         }
@@ -42,8 +42,8 @@ module.exports = {
      * @param {*} res Not used here.
      * @param {*} next Next express endpoint handler.
      */
-    handleUploadForm(req, res, next) {
-        logger.info('handleUploadForm')
+    handleFormData(req, res, next) {
+        logger.info('handleFormData')
 
         //
         // formidable handles incoming form data, which contains the uploaded file.
@@ -80,15 +80,16 @@ module.exports = {
             .on('file', (name, file) => {
                 //
                 // At this point the file has been fully received and saved to disk.
-                // We add the file path to the request, so that the next handler
+                // We add the file to the request, so that the next handler
                 // can save it in the database for later lookup.
                 //
                 logger.debug('Saving file ' + file.path)
-                req.body.filepath = file.path
-                req.body.imageUrl = path.join(imagefolder, '/', file.name)
+
+
             })
             .on('aborted', () => {
-                logger.warn('File upload was aborted - no file?')
+                logger.warn('File upload was aborted - missing form or file?')
+                // Continue to next handler
                 next()
             })
             .on('end', () => {

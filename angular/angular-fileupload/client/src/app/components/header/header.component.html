@@ -11,6 +11,16 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="'/dashboard'" [routerLinkActive]="['active']" href="#">Dashboard</a>
         </li>
+
+        <li ngbDropdown class="nav-item dropdown">
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>Images</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <!-- <a class="dropdown-item" routerLink="/upload-via-ng2upload" href="#">Upload via Ng2Upload</a> -->
+            <a class="dropdown-item" routerLink="/images" href="#">Show All Images</a>
+            <a class="dropdown-item" routerLink="/upload" href="#">Upload New Image</a>
+          </div>
+        </li>
+
       </ul>
     </div>
   </div>

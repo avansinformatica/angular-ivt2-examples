@@ -1,0 +1,124 @@
+<div class="row">
+  <div class="col-9">
+    <h3>Image Upload Example - via form data</h3>
+    <p class="lead">
+      Select an file to be uploaded to the server. The uploaded file will be stored in the database.
+    </p>
+    <p>
+      Based on the input accept properties, only image files (.jpg, .jpeg, .gif, .png) can be selected.
+    </p>
+    <input 
+      type="file"
+      ng2FileSelect
+      accept=".jpg, .jpeg, .gif, .png"
+      [uploader]="uploader"
+    />
+    <br/>
+    <br/>
+
+    <h3>File attributes</h3>
+    <p>Select a file first. Then fill in some additional file attributes. These will be stored in the database.</p>
+    <div>
+      <form #fileInfoForm="ngForm">
+        <div class="form-group row">
+          <label for="imagename" class="col-3 col-form-label">Image name</label>
+          <div class="col-9">
+            <input
+              type="text"
+              class="form-control"
+              id="imagename"
+              [disabled]="!uploader.queue[0]?.file"
+              [(ngModel)]="imageInfo.info.imagename"
+              name="course"
+              placeholder="Additional image file name"
+            >
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="description" class="col-3 col-form-label">Description
+          </label>
+          <div class="col-9">
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              [disabled]="!uploader.queue[0]?.file"
+              [(ngModel)]="imageInfo.info.description"
+              name="module"
+              placeholder="Additional image description"
+            >
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="category" class="col-3 col-form-label">Category</label>
+          <div class="col-sm-4">
+            <select
+              class="form-control"
+              name="category"
+              [disabled]="!uploader.queue[0]?.file"
+              required
+              [(ngModel)]="imageInfo.info.category"
+            >
+              <option
+                *ngFor="let category of categories"
+                [ngValue]="category.value"
+              >{{ category.name }}
+            </option>
+            </select>
+          </div>
+          <div class="col-1"></div>
+          <label for="inputType" class="col-1 col-form-label">Filesize</label>
+          <div class="col-2">
+            <p *ngIf="uploader.queue?.length > 0 && uploader.options.isHTML5" class="col-form-label">{{ uploader.queue[0]?.file?.size/1024/1024 | number:'.2' }} MB</p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputType" class="col-3 col-form-label"></label>
+          <div class="col-2">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="uploadFile()"
+              [disabled]="!uploader.queue?.length && (uploader.queue[0]?.isSuccess || !imageInfo.info.category)"
+            >
+              <span class="glyphicon glyphicon-upload"></span> Upload
+            </button>
+          </div>
+          <div class="col-5">
+            <div *ngIf="uploader.options.isHTML5">
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.queue[0]?.progress + '%' }" aria-valuenow="uploader.queue[0]?.progress"
+                  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="text-center">
+              <span *ngIf="uploader.queue[0]?.isSuccess">
+                <i class="fa fa-check-circle-o success fa-2x" aria-hidden="true"></i>
+              </span>
+              <span *ngIf="uploader.queue[0]?.isCancel">
+                <i class="fa fa-ban danger fa-2x" aria-hidden="true"></i>
+              </span>
+              <span *ngIf="uploader.queue[0]?.isError">
+                <i class="fa fa-exclamation-triangle danger fa-2x" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">imageInfo debug</h5>
+<pre>
+{{ imageInfo | json }}
+</pre>
+    </div>
+  </div>
+
+
+</div>

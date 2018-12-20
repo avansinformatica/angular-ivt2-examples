@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-// import { Router, ActivatedRoute } from '@angular/router';
 import { FileUploader, FileItem, FileUploaderOptions, ParsedResponseHeaders } from 'ng2-file-upload';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-file-upload',
@@ -13,9 +12,12 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   
   // Additional info to be stored with the image in the database.
   public imageInfo : {
-    imagename: string,
-    description: string, 
-    category: string,
+    info: {
+      imagename: string,
+      description: string, 
+      category: string
+    },
+    image: string
   }
 
   // Define image categories. Could/should be fetched from database.
@@ -30,9 +32,12 @@ export class UploadFileComponent implements OnInit, OnDestroy {
 
     // Initialize file info object
     this.imageInfo = {
-      imagename: '',
-      description: '',
-      category: ''
+      info: {
+        imagename: '',
+        description: '',
+        category: ''
+      },
+      image: ''
     }
 
     const fileUploaderOptions: FileUploaderOptions = {
