@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageService } from 'src/app/components/images/image.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Image } from '../image.model';
 import { Router } from '@angular/router';
-import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-file-upload-body',

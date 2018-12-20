@@ -1,5 +1,5 @@
 //
-//
+// Image controller
 //
 'use strict';
 
@@ -12,6 +12,7 @@ module.exports = {
     createImage(req, res, next) {
         logger.info('createImage')
         // logger.info(req.body)
+
         // Create an image data object from the incoming request
         const data = {
             info: {
@@ -21,6 +22,7 @@ module.exports = {
             },
             image: req.body.image
         }
+
         // Create the image
         Image
             .create(data)
@@ -30,7 +32,7 @@ module.exports = {
             })
             .catch(err => {
                 logger.error('error: ' + err)
-                res.status(500).json(new ApiError(err.toString(), 500))
+                next(new ApiError(err.toString(), 500))
             })
     },
 
@@ -39,7 +41,7 @@ module.exports = {
         Image
             .find()
             .then(images => res.status(200).json({ results: images }))
-            .catch(err => res.status(500).json(new ApiError(err.toString(), 500)))
+            .catch(err => next(new ApiError(err.toString(), 500)))
     }
 
 }

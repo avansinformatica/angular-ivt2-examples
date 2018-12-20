@@ -21,20 +21,22 @@ app.use(compression())
 
 // bodyParser parses the body from a request
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-	'extended': 'true'
-})); 
+app.use(bodyParser.urlencoded({ extended: 'true' })); 
+
 // parse application/json
-app.use(bodyParser.json()); 
-// parse application/vnd.api+json as json
-app.use(bodyParser.json({
-	type: 'application/vnd.api+json'
-})); 
+// Set the max file size limit for json uploads. 
+// Important when uploading binary files as bse64 strings.
+// Info: see https://www.npmjs.com/package/body-parser#limit
+app.use(bodyParser.json({ limit: 50 * 1024 * 2014 })); 
 
 // Instal Morgan as logger
 app.use(morgan('dev'))
 
 // Add CORS headers
+// Cross-Origin Resource Sharing (CORS) is a mechanism that uses additional HTTP headers 
+// to tell a browser to let a web application running at one origin (domain) have 
+// permission to access selected resources from a server at a different domain.
+//
 logger.info(`Setting process.env.ALLOW_ORIGIN to '${process.env.ALLOW_ORIGIN}'`);
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', process.env.ALLOW_ORIGIN);
@@ -45,14 +47,14 @@ app.use(function (req, res, next) {
 });
 
 // Serve files from the ./static folder 
-app.use(express.static('./static'))
+// app.use(express.static('./static'))
 
 // Provide login and registration 
 app.use('/api', authenticationRoutes)
-// Handle image api requests
+// Handle all other API requests
 app.use('/api', imageRoutes)
 
-// Postprocessing; catch all non-existing endpoint requests
+// Catch all non-existing API endpoint requests
 app.use('/api/*', function (req, res, next) {
 	const error = new ApiError('Non-existing endpoint', 404)
 	next(error)
@@ -66,7 +68,7 @@ app.use((err, req, res, next) => {
 
 //
 // When this server shuts down, we gracefully clean up all the mess behind us.
-// ToDo: release the database pool.
+// ToDo: release the database connection.
 //
 function shutdown() {
 	logger.info('shutdown started')
