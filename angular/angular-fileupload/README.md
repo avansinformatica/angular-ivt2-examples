@@ -13,6 +13,10 @@ A live demo is available at [Heroku](https://angular-imageupload.herokuapp.com).
 - nodejs and npm
 - mongodb installed, and mongod running
 
+## Note
+In this example, the frontend app is hosted by the same server that hosts the api. While this may seem easy, since we do not need to have a separate server running, during development this can be annoying. The server uses the production version
+of the app, forcing it to be fully rebuilt every time you change the code. You lose the live update functions that `ng serve` offer. This may be a good reason to have two separate projects, one for the frontend app, and a separate for the server. This problem may be solved by using a build tool like Gulp.
+
 ## Usage
 Fork this repo and clone your copy onto your local machine. 
 Then run

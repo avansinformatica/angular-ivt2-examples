@@ -24,8 +24,7 @@ module.exports = {
         }
 
         // Create the image
-        Image
-            .create(data)
+        Image.create(data)
             .then(image => {
                 logger.debug('Image created')
                 res.status(200).json({ results: image })
@@ -38,10 +37,19 @@ module.exports = {
 
     getImages(req, res, next) {
         logger.info('getImages')
-        Image
-            .find()
+
+        Image.find()
             .then(images => res.status(200).json({ results: images }))
             .catch(err => next(new ApiError(err.toString(), 500)))
+    },
+
+    deleteImage(req, res, next) {
+        logger.info('deleteImage ' + req.params.id )
+
+        Image.findOneAndDelete({ _id: req.params.id })
+            .then(success => res.status(200).end())
+            .catch(err => next(new ApiError(err.toString(), 500)))
     }
+
 
 }

@@ -1,4 +1,3 @@
-
 <h3>All Images</h3>
 
 <div *ngIf="images">
@@ -11,12 +10,19 @@
           class="picture"
           height="160px"
         >
-        <p class="picture">{{image.info.description}}</p>
+        <div class="row">
+          <div class="col-9">
+            <p class="picture">{{image.info.description}}</p>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-outline-warning btn-sm float-right" (click)='deleteImage(image._id)'>X</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div *ngIf="!images || images.length === 0">
-  <p>No images found. Upload an image first</p>
+  <p>No images found. <a routerLink="/upload" href="#">Upload</a> an image first</p>
 </div>

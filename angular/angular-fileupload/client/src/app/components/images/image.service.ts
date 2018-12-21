@@ -53,6 +53,18 @@ export class ImageService {
   }
 
   /**
+   * Delete an image by id.
+   */
+  public deleteImage(id: string): Observable<boolean> {
+    console.log('deleteImage');
+    return this.http.delete<ApiResponse>(`${environment.serverUrl}/images/${id}`)
+      .pipe(
+        map(() => { return true; }),  // OK if no error,
+        catchError(this.handleError), // otherwise handle the error
+      );
+  }
+
+  /**
    * Handle errors
    * 
    * @param error 
