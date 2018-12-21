@@ -10,6 +10,7 @@ const UserInfo = require('../model/UserInfo')
 const config = require('../config/config')
 const bcrypt = require('bcryptjs')
 const logger = require('../config/config').logger
+const jwt = require('jsonwebtoken');
 
 const BCRYPT_SALT_ROUNDS = 12;
 

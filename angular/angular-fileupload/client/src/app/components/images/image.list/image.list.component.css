@@ -1,9 +1,9 @@
-.picture {
+img.picture {
 	border: 1px solid #888888;
 	padding: 4px;
 }
 
-.picture, 
+img.picture, 
 p.picture {
 	margin: 5px;
 }

@@ -28,15 +28,7 @@ export class ImageService {
   public uploadImage(data): Observable<boolean> {
     console.log('uploadImage')
     console.dir(data)
-
-    // const data  = {
-    //   imagename: image.info.imagename,
-    //   description: 'test',
-    //   category: 'test',
-    //   image: 'asdkjasglkjadfsglkajrfglkj'
-    // }
-
-    return this.http.post(`http://localhost:4200/api/images`, data, this.httpOptions)
+    return this.http.post(`${environment.serverUrl}/images`, data, this.httpOptions)
       .pipe(
         map(() => { return true; }),
         catchError(this.handleError)

@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: 'true' }));
 // Set the max file size limit for json uploads. 
 // Important when uploading binary files as bse64 strings.
 // Info: see https://www.npmjs.com/package/body-parser#limit
-app.use(bodyParser.json({ limit: 50 * 1024 * 2014 })); 
+app.use(bodyParser.json({ limit: 5 * 1024 * 2014 }));
 
 // Instal Morgan as logger
 app.use(morgan('dev'))
@@ -45,9 +45,6 @@ app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Credentials', true);
 	next();
 });
-
-// Serve files from the ./static folder 
-// app.use(express.static('./static'))
 
 // Provide login and registration 
 app.use('/api', authenticationRoutes)
