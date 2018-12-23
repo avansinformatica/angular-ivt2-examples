@@ -35,3 +35,45 @@ To start the client without server (losing access to the API and database) run
 ```
 cd client & ng s
 ```
+
+## Docker
+When you have [Docker](https://www.docker.com/) installed, you can run the Angular app, the server and a MongoDb database in a container on your local machine. The same container can also run anywhere in the cloud on a Docker based machine. 
+
+To run separate containers, you use the `docker` command. To run multiple containers at once, use `docker-compose`. This starts the servers as described in the `docker-compose.yml` file.
+
+Open a command prompt and type
+```
+docker-compose up --build
+```
+This starts the angular service and the mongo database, wich has a default administrator account set up. 
+
+Our example needs a user that the server can connect to. To create the required user for this example, type `Ctrl+C` to stop the servers. Then start only the mongo server:
+```
+docker-compose up mongo
+```
+
+Open a separate terminal or command window and type:
+```
+mongo -u mongoadmin -p mongoadminpassword --authenticationDatabase admin
+```
+
+This starts the mongo client and authenticates as the db administrator. Then create the user:
+```
+use imagexample
+
+db.createUser({
+	user: "mongouser",
+	pwd: "secret",
+	roles: [{ 
+		role: "readWrite", 
+		db: "imagexample" 
+	}],
+	mechanisms: [
+		"SCRAM-SHA-1"
+	]
+})
+```
+Now stop the mongo server again and restart everything.
+```
+docker-compose up
+```
