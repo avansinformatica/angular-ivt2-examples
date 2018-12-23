@@ -1,0 +1,56 @@
+version: "3.2"
+
+services:
+
+  angular:
+    container_name: angular
+    # Use Dockerfile in this folder to build image
+    # build: ./client
+    build: .
+    # externalport : internalport
+    ports:
+      - "4200:4200"
+    environment:
+      - NODE_ENV=production
+      - ALLOW_ORIGIN=angular
+      # Read environment variables if used
+      # - MONGO_DB_USER=${MONGO_DB_USER}
+      # - MONGO_DB_PASSWORD=${MONGO_DB_PASSWORD}
+      - MONGO_DB_HOST=mongo
+      - MONGO_DB_USER=mongousername
+      - MONGO_DB_PASSWORD=mongopassword
+      # Settings to connect to our local mongo instance 
+      - DB_HOST=mongo
+      - DB_USER=mongousername
+      - DB_PORT=27017
+      - DB_PASSWORD=mongopassword
+      - DB_DATABASE=imagexample
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    networks:
+      - frontend
+    privileged: true
+      
+  mongo:
+    image: mongo:latest
+    # container_name: mongo
+    volumes:
+      - db-data:/data/mongodb/db
+    ports:
+      - "27017:27017"
+    environment:
+      # - MONGO_DB_USER=${MONGO_DB_USER}
+      # - MONGO_DB_PASSWORD=${MONGO_DB_PASSWORD}
+      - MONGO_INITDB_ROOT_USERNAME=mongousername
+      - MONGO_INITDB_ROOT_PASSWORD=mongopassword
+    networks:
+      - frontend
+    command: mongod --auth --storageEngine wiredTiger # --quiet
+
+networks:
+  frontend:
+
+volumes:
+  db-data:
