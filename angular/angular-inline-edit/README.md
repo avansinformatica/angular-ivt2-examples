@@ -1,5 +1,7 @@
 # AngularInlineEdit
 
+Inline Edit Tutorial. See the blogpost at [Codementor](https://www.codementor.io/godson.ukpere/creating-an-inline-edit-component-in-angular-2-nmkdlpxtq)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
 ## Development server
