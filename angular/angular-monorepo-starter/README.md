@@ -28,13 +28,13 @@ Cloned from [https://github.com/alan-agius4/ng-mono-repo-starter.git](https://gi
 
 To get started, you need to:
 
-1. Clone the repository
+1. Clone the repository.
 
 ```shell
 git clone https://github.com/path/to/this/repo.git <project_name>
 ```
 
-2. Install dependencies
+2. Install dependencies.
 
 ```
 cd <project_name>
@@ -43,15 +43,13 @@ npm install
 
 There is a `postinstall` script that after `npm install` has finished will bootstrap the mono repo.
 
-3. See if it worked
-   You could run the tests.
+3. To see if it worked you could run the tests.
 
 ```
 npm test
 ```
 
-4. Run the sample project
-   The sample project uses internal as well as externally referenced components. To see it at work:
+4. Run the sample project. The sample project uses internal as well as externally referenced components. To see it at work:
 
 ```
 cd packages\sampleproject
