@@ -1,0 +1,15 @@
+node_modules
+.sonar
+.cache
+dist
+.idea
+coverage
+*.log
+*.tgz
+npm-debug.*
+tools/**/*.js
+packages/*/scripts
+packages/**/ng-package.json
+packages/**/package-lock.json
+lerna-debug.log
+package.json.lerna_backup

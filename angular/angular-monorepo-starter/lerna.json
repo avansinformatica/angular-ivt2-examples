@@ -1,0 +1,41 @@
+{
+	"version": "0.0.0",
+	"packages": [
+		"packages/*"
+	],
+	"command": {
+		"publish": {
+			"yes": true,
+			"message": "chore(release): publish",
+			"allowBranch": [
+				"master",
+				"release/*"
+			],
+			"noCommitHooks": true,
+			"conventionalCommits": true,
+			"ignoreChanges": [
+				"*.snap",
+				"*.spec.ts",
+				"*.md"
+			]
+		},
+		"bootstrap": {
+			"scope": [
+				"@speedy/*"
+			],
+			"noCi": true,
+			"hoist": true
+		},
+		"exec": {
+			"scope": [
+				"@speedy/*"
+			]
+		},
+		"clean": {
+			"yes": true
+		}
+	},
+	"npmClientArgs": [
+		"--no-package-lock"
+	]
+}
