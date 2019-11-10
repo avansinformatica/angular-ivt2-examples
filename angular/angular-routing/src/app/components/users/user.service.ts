@@ -1,22 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
-import { map, tap, delay } from 'rxjs/operators';
-import { User } from './user.model';
-import { Http } from '@angular/http';
-import { environment } from 'src/environments/environment.prod';
+import { Injectable } from "@angular/core";
+import { Observable, from } from "rxjs";
+import { map, tap, delay } from "rxjs/operators";
+import { User } from "./user.model";
+import { Http } from "@angular/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserService {
+  users: User[];
 
-  users: User[]
-
-  constructor(
-    private http: Http
-  ) {
-    console.log('UserService constructed');
-   }
+  constructor(private http: Http) {
+    console.log("UserService constructed");
+  }
 
   public getUsers(): Observable<User[]> {
     return this.http.get(environment.apiUrl).pipe(
@@ -39,5 +36,4 @@ export class UserService {
   getUser(id: number): any {
     return this.users[id];
   }
-
 }
