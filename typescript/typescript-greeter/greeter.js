@@ -14,5 +14,5 @@ var greeter = new Greeter("Hello, world!");
 // the greeting can be seen with node and in the browser console
 console.log(greeter.greet());
 // when running in node 'document' is not defined!
-// document.body.innerHTML = greeter.greet();
+document.body.innerHTML = greeter.greet();
 //# sourceMappingURL=greeter.js.map
