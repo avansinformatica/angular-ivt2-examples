@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { Observable, from } from "rxjs";
-import { map, tap, delay } from "rxjs/operators";
-import { User } from "./user.model";
-import { Http } from "@angular/http";
-import { environment } from "src/environments/environment";
+import { Injectable } from '@angular/core'
+import { Observable, from } from 'rxjs'
+import { map, tap, delay } from 'rxjs/operators'
+import { User } from './user.model'
+import { Http } from '@angular/http'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class UserService {
-  users: User[];
+  users: User[]
 
   constructor(private http: Http) {
-    console.log("UserService constructed");
+    console.log('UserService constructed')
   }
 
   public getUsers(): Observable<User[]> {
@@ -30,10 +30,10 @@ export class UserService {
 
       // all of the above could have been done in one:
       // map(response => response.json().results.users.map(data => new User(data)))
-    );
+    )
   }
 
   getUser(id: number): any {
-    return this.users[id];
+    return this.users[id]
   }
 }
