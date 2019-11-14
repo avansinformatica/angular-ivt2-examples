@@ -1,5 +1,5 @@
-import { InMemoryDbService } from "angular-in-memory-web-api";
-import { Injectable } from "@angular/core";
+import { InMemoryDbService } from 'angular-in-memory-web-api'
+import { Injectable } from '@angular/core'
 
 /**
  * For all information:
@@ -8,7 +8,7 @@ import { Injectable } from "@angular/core";
  *
  */
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class InMemoryDataService implements InMemoryDbService {
   constructor() {}
@@ -16,38 +16,38 @@ export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let users = [
       {
-        id: 1,
-        gender: "male",
+        id: 0,
+        gender: 'male',
         name: {
-          title: "mr",
-          first: "Anthony",
-          last: "User"
+          title: 'mr',
+          first: 'Anthony',
+          last: 'User'
         },
-        email: "a.user@server.com",
+        email: 'a.user@server.com',
         picture: {
-          large: "./assets/images/anonymous-person.png",
-          medium: "./assets/images/anonymous-person.png",
-          thumbnail: "./assets/images/anonymous-person.png"
+          large: './assets/images/anonymous-person.png',
+          medium: './assets/images/anonymous-person.png',
+          thumbnail: './assets/images/anonymous-person.png'
         },
-        nat: "ES"
+        nat: 'ES'
       },
       {
-        id: 2,
-        gender: "male",
+        id: 1,
+        gender: 'male',
         name: {
-          title: "mr",
-          first: "John",
-          last: "Anotheruser"
+          title: 'mr',
+          first: 'John',
+          last: 'Anotheruser'
         },
-        email: "j.anotheruser@server.com",
+        email: 'j.anotheruser@server.com',
         picture: {
-          large: "./assets/images/anonymous-person.png",
-          medium: "./assets/images/anonymous-person.png",
-          thumbnail: "./assets/images/anonymous-person.png"
+          large: './assets/images/anonymous-person.png',
+          medium: './assets/images/anonymous-person.png',
+          thumbnail: './assets/images/anonymous-person.png'
         },
-        nat: "ES"
+        nat: 'ES'
       }
-    ];
-    return { users };
+    ]
+    return { users }
   }
 }

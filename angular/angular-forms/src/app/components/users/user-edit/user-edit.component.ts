@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { User } from '../user.model'
 import { UserService } from '../users.service'
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
-import { tap } from 'rxjs/operators'
+import { tap, map, switchMap, catchError } from 'rxjs/operators'
 
 @Component({
   selector: 'app-user-edit',
@@ -39,20 +39,19 @@ export class UserEditComponent implements OnInit {
 
     if (this.editMode) {
       // Subscribe to changes in route params. When the route changes we get updates on route params.
-      this.route.params.subscribe(params => {
-        if (params['id']) {
-          // Subscribe for available users. Once users are available we get our specific user.
-          this.userService.usersAvailable.subscribe(userAvailable => {
-            if (userAvailable) {
-              const user = this.userService.getUser(+params['id'])
-              // make local copy of user - detached from original array
-              this.user = new User(JSON.parse(JSON.stringify(user)))
-              // local date of birth - for ngbDatePicker
-              this.dob = { year: '1980', month: '10', day: '28' }
-            }
-          })
-        }
-      })
+
+    this.route.params
+      .pipe(
+        map(params => +params['id']),
+        switchMap(id => this.userService.getUserFromServer(id))
+        // catchError(error => console.log('Error!', error))
+      )
+      .subscribe(user => {
+          // make local copy of user - detached from original array
+          this.user = new User(JSON.parse(JSON.stringify(user)))
+        },
+        err => console.log('We hebben een fout', err)
+      );
     } else {
       // Create a new empty user. The required properties are filled
       // with empty values by the usermodel.
@@ -68,7 +67,7 @@ export class UserEditComponent implements OnInit {
     // The display view must then show the new or edited user.
 
     console.log('onSubmit: ', this.user)
-    if (this.user._id) {
+    if (this.user.id) {
       this.userService.updateUser(this.user)
     } else {
       this.userService

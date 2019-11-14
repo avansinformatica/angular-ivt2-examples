@@ -16,7 +16,7 @@ export enum Title {
 }
 
 export class User {
-  _id: string
+  id: number
   gender: Gender = Gender.unknown
   name: {
     title: Title

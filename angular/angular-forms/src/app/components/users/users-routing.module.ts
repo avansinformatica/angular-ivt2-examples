@@ -15,6 +15,7 @@ const routes: Routes = [
   } },
   { path: 'users/list/:id', component: UserDetailsComponent },
   { path: 'users/list/:id/edit', component: UserEditComponent, data: { userAlreadyExists: true, title: 'Edit User' } },
+  { path: 'notfound', component: UserNotfoundComponent },
   { path: 'users', component: UsersComponent, children: [
     { path: '', component: UserDetailsComponent },
     { path: 'new', component: UserEditComponent, data: { userAlreadyExists: false, title: 'New User' } },
