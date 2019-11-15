@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { UserNotfoundComponent } from './user-notfound.component';
+import { UserNotfoundComponent } from './user-notfound.component'
 
 describe('UserNotfoundComponent', () => {
-  let component: UserNotfoundComponent;
-  let fixture: ComponentFixture<UserNotfoundComponent>;
+  let component: UserNotfoundComponent
+  let fixture: ComponentFixture<UserNotfoundComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserNotfoundComponent ]
-    })
-    .compileComponents();
-  }));
+      declarations: [UserNotfoundComponent]
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserNotfoundComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(UserNotfoundComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

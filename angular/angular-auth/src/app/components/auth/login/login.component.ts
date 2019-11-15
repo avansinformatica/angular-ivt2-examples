@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const email = this.loginForm.value['email']
-      const password = this.loginForm.value['password']
+      const email = this.loginForm.value.email
+      const password = this.loginForm.value.password
       this.authService.login(email, password)
     } else {
       console.error('loginForm invalid')

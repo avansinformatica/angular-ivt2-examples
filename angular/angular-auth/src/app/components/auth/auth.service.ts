@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable } from 'rxjs'
 import { User, UserRole } from '../users/user.model'
 import { Router } from '@angular/router'
-import { Http, Headers } from '@angular/http'
 import { environment } from '../../../environments/environment'
 import { map, tap } from 'rxjs/operators'
 import { AlertService } from 'src/app/modules/alert/alert.service'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class AuthService {
   private isLoggedInUser = new BehaviorSubject<boolean>(false)
   private isAdminUser = new BehaviorSubject<boolean>(false)
   private isPlainUser = new BehaviorSubject<boolean>(false)
-  // Username for printing in navbar
   private loggedInUserName = new BehaviorSubject<string>('')
 
   private readonly currentUser = 'currentuser'
@@ -23,7 +22,7 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   public readonly redirectUrl: string = '/dashboard'
 
-  private readonly headers = new Headers({ 'Content-Type': 'application/json' })
+  private readonly headers = new HttpHeaders({ 'Content-Type': 'application/json' })
 
   /**
    *
@@ -31,7 +30,7 @@ export class AuthService {
    * @param router
    * @param http
    */
-  constructor(private alertService: AlertService, private router: Router, private http: Http) {
+  constructor(private alertService: AlertService, private router: Router, private http: HttpClient) {
     this.getCurrentUser().subscribe({
       next: (user: User) => {
         console.log(`${user.email} logged in`)
@@ -62,13 +61,9 @@ export class AuthService {
     console.log(`${environment.apiUrl}/api/login`)
 
     return this.http
-      .post(
-        `${environment.apiUrl}/api/login`,
-        { email: email, password: password },
-        { headers: this.headers }
-      )
+      .post(`${environment.apiUrl}/api/login`, { email, password }, { headers: this.headers })
       .pipe(
-        map(response => response.json()),
+        // map(response => response.toString() .json()),
         tap(console.log)
       )
       .subscribe({
@@ -76,21 +71,16 @@ export class AuthService {
           const currentUser = new User(response)
           console.dir(currentUser)
           this.saveCurrentUser(currentUser, response.token)
-
           // Notify all listeners that we're logged in.
           this.isLoggedInUser.next(true)
           this.loggedInUserName.next(currentUser.fullName)
           currentUser.hasRole(UserRole.Admin).subscribe(result => this.isAdminUser.next(result))
           currentUser.hasRole(UserRole.Basic).subscribe(result => this.isPlainUser.next(result))
-
-          this.alertService.success('U bent ingelogd')
-          //
+          this.alertService.success('You have been logged in')
           // If redirectUrl exists, go there
           // this.router.navigate([this.redirectUrl]);
-          // return true;
         },
-        error: err => {
-          // console.error('Error logging in: ' + err);
+        error: () => {
           this.alertService.error('Invalid credentials')
         }
       })
@@ -105,14 +95,14 @@ export class AuthService {
     localStorage.removeItem(this.currentToken)
     this.isLoggedInUser.next(false)
     this.isAdminUser.next(false)
-    this.alertService.success('U bent uitgelogd')
+    this.alertService.success('You have been logged out.')
   }
 
   /**
    * Get the currently logged in user.
    */
   private getCurrentUser(): Observable<User> {
-    return Observable.create(observer => {
+    return new Observable(observer => {
       const localUser: any = JSON.parse(localStorage.getItem(this.currentUser))
       if (localUser) {
         console.log('localUser found')

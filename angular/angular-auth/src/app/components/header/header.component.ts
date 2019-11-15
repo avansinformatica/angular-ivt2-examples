@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn$: Observable<boolean>
   isAdmin$: Observable<boolean>
   fullNameSubscription: Subscription
-  fullName: string = ''
+  fullName = ''
 
   constructor(private authService: AuthService, private router: Router) {}
 

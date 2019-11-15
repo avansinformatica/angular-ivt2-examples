@@ -39,10 +39,10 @@
 
       <!-- Authentication/user profile menu -->
       <ul class="navbar-nav">
-        <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
+        <li *ngIf="(isLoggedIn$ | async) === false" class="nav-item">
           <a class="nav-link" routerLink="/login" href="#">Sign in</a>
         </li>
-        <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
+        <li *ngIf="(isLoggedIn$ | async) === false" class="nav-item">
           <a class="nav-link" routerLink="/register" href="#">Sign up</a>
         </li>
 

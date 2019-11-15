@@ -1,9 +1,9 @@
-﻿<ngb-alert 
+﻿<ngb-alert
   *ngIf="!staticAlertClosed && alert"
-   [dismissible]="true" 
+  [dismissible]="true"
   (close)="staticAlertClosed = true"
-  [ngClass]="{ 
-    'alert alert-success': alert, 
+  [ngClass]="{
+    'alert alert-success': alert,
     'alert-danger': alert.type === 'error',
     'alert-success': alert.type === 'success'
   }"

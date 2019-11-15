@@ -1,15 +1,15 @@
-.ng-valid[required], 
-.ng-valid.required  {
-  border-left: 5px solid #42A948; /* green */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
 }
 
 /* 'form' is the name of the form in the template file. */
-.ng-invalid:not(form)  {
+.ng-invalid:not(form) {
   /* red */
   /* border-left: 5px solid #a94442;  */
 }
 
-.is-invalid  {
+.is-invalid {
   /* red */
-  border-left: 5px solid #a94442; 
+  border-left: 5px solid #a94442;
 }
