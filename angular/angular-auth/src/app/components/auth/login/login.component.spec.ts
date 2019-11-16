@@ -1,25 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { RouterTestingModule } from '@angular/router/testing'
 
-import { UserListComponent } from './user-list.component'
-import { UserItemComponent } from './user-item/user-item.component'
+import { LoginComponent } from './login.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AlertModule } from 'src/app/modules/alert/alert.module'
 import { AlertService } from 'src/app/modules/alert/alert.service'
 
-describe('UserListComponent', () => {
-  let component: UserListComponent
-  let fixture: ComponentFixture<UserListComponent>
+describe('LoginComponent', () => {
+  let component: LoginComponent
+  let fixture: ComponentFixture<LoginComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [UserListComponent, UserItemComponent],
-      imports: [RouterTestingModule, AlertModule],
+      declarations: [LoginComponent],
+      imports: [FormsModule, ReactiveFormsModule],
       providers: [AlertService]
     }).compileComponents()
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserListComponent)
+    fixture = TestBed.createComponent(LoginComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

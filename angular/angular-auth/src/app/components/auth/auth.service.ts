@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs'
 import { User, UserRole } from '../users/user.model'
 import { Router } from '@angular/router'
 import { environment } from '../../../environments/environment'
-import { map, tap } from 'rxjs/operators'
+import { map, tap, catchError } from 'rxjs/operators'
 import { AlertService } from 'src/app/modules/alert/alert.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 
@@ -63,11 +63,14 @@ export class AuthService {
     return this.http
       .post(`${environment.apiUrl}/api/login`, { email, password }, { headers: this.headers })
       .pipe(
-        // map(response => response.toString() .json()),
-        tap(console.log)
+        tap(
+          // Log the result or error
+          data => console.log(data),
+          error => console.error(error)
+        )
       )
       .subscribe({
-        next: response => {
+        next: (response: any) => {
           const currentUser = new User(response)
           console.dir(currentUser)
           this.saveCurrentUser(currentUser, response.token)
