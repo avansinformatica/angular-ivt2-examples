@@ -11,10 +11,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
   providedIn: 'root'
 })
 export class AuthService {
-  private isLoggedInUser = new BehaviorSubject<boolean>(false)
+  public isLoggedInUser = new BehaviorSubject<boolean>(false)
+  public loggedInUserName = new BehaviorSubject<string>('')
   private isAdminUser = new BehaviorSubject<boolean>(false)
   private isPlainUser = new BehaviorSubject<boolean>(false)
-  private loggedInUserName = new BehaviorSubject<string>('')
 
   private readonly currentUser = 'currentuser'
   private readonly currentToken = 'token'
@@ -83,7 +83,8 @@ export class AuthService {
           // If redirectUrl exists, go there
           // this.router.navigate([this.redirectUrl]);
         },
-        error: () => {
+        error: (message: any) => {
+          console.log('error:', message)
           this.alertService.error('Invalid credentials')
         }
       })

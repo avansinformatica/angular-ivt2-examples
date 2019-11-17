@@ -2,6 +2,10 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 import { Component, Directive, Input, HostListener } from '@angular/core'
 
+//
+//
+//
+//
 @Component({ selector: 'app-dashboard', template: '' })
 class DashboardStubComponent {}
 
@@ -31,7 +35,11 @@ export class RouterLinkStubDirective {
   }
 }
 
-fdescribe('AppComponent', () => {
+//
+//
+//
+//
+describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
   let app
 
