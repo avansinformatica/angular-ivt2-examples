@@ -3,14 +3,15 @@ import { browser, logging } from 'protractor'
 
 describe('This Angular webapp', () => {
   let page: AppPage
+  const expectedTitle = 'Auth Example'
 
   beforeEach(() => {
     page = new AppPage()
   })
 
-  it('should display "Auth Example" as navbar-brand', () => {
+  it('should display the expected title as navbar-brand', () => {
     page.navigateTo()
-    expect(page.getTitleText()).toEqual('Auth Example')
+    expect(page.getTitleText()).toEqual(expectedTitle)
   })
 
   afterEach(async () => {

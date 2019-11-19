@@ -3,15 +3,10 @@
 // Add your API mocks for your specific project in this file.
 //
 const express = require('express')
-const bodyParser = require('body-parser')
-const port = process.env.PORT || 3000
+const port = 3000
 
 let app = express()
 let routes = require('express').Router()
-
-// bodyParser parses the body from a request
-app.use(bodyParser.urlencoded({ extended: 'true' }))
-app.use(bodyParser.json())
 
 // Add CORS headers so our external Angular app is allowed to connect
 app.use(function(req, res, next) {
@@ -35,9 +30,10 @@ routes.post('/api/login', (req, res, next) => {
 })
 
 //
-// Write your mocking API endpoints here.
+// Write your own mocking API endpoints here.
 //
 
+// Finally add your routes to the app
 app.use(routes)
 
 app.use('*', function(req, res, next) {
