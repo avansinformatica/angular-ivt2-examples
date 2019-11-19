@@ -30,20 +30,18 @@ describe('Login page', () => {
     browser.waitForAngularEnabled(false)
     page.navigateTo('/login')
 
-    // This does not work
-    // emailInput.clear()
     emailInput.click()
-    // passwordInput.clear()
     passwordInput.click()
-
-    // This does work
+    // - This does not work
+    // emailInput.clear()
+    // passwordInput.clear()
+    // - This does work
     // https://stackoverflow.com/a/52782814/3471923
     emailInput.sendKeys(protractor.Key.chord(protractor.Key.CONTROL, 'a'))
     emailInput.sendKeys(protractor.Key.BACK_SPACE)
     passwordInput.sendKeys(protractor.Key.chord(protractor.Key.CONTROL, 'a'))
     passwordInput.sendKeys(protractor.Key.BACK_SPACE)
 
-    // submitButton.click()
     browser.driver.sleep(100)
 
     expect(emailInvalidMessage).toBeTruthy()
