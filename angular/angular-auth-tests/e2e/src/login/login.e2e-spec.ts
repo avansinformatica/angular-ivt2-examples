@@ -1,5 +1,6 @@
 import { LoginPage } from './login.po'
 import { browser, logging, element, by } from 'protractor'
+import { protractor } from 'protractor/built/ptor'
 
 describe('Login page', () => {
   let page: LoginPage
@@ -28,15 +29,27 @@ describe('Login page', () => {
   it('should display correct error messages when no values are entered in inputs', () => {
     browser.waitForAngularEnabled(false)
     page.navigateTo('/login')
-    emailInput.sendKeys('x')
-    passwordInput.sendKeys('x')
-    submitButton.click()
-    browser.driver.sleep(500)
+
+    // This does not work
+    // emailInput.clear()
+    emailInput.click()
+    // passwordInput.clear()
+    passwordInput.click()
+
+    // This does work
+    // https://stackoverflow.com/a/52782814/3471923
+    emailInput.sendKeys(protractor.Key.chord(protractor.Key.CONTROL, 'a'))
+    emailInput.sendKeys(protractor.Key.BACK_SPACE)
+    passwordInput.sendKeys(protractor.Key.chord(protractor.Key.CONTROL, 'a'))
+    passwordInput.sendKeys(protractor.Key.BACK_SPACE)
+
+    // submitButton.click()
+    browser.driver.sleep(100)
 
     expect(emailInvalidMessage).toBeTruthy()
-    // expect(emailInvalidMessage).toContain('enter a valid email address')
+    expect(emailInvalidMessage.getText()).toContain('enter a valid email address')
     expect(passwordInvalidMessage).toBeTruthy()
-    // expect(passwordInvalidMessage).toContain('enter a valid password')
+    expect(passwordInvalidMessage.getText()).toContain('enter a valid password')
     expect(browser.getCurrentUrl()).toContain('localhost:4200/login')
   })
 
@@ -82,6 +95,6 @@ describe('Login page', () => {
     // tslint:disable-next-line: quotemark
     browser.executeScript("window.localStorage.removeItem('token')")
     // tslint:disable-next-line: quotemark
-    browser.executeScript("window.localStorage.removeItem('user')")
+    browser.executeScript("window.localStorage.removeItem('currentuser')")
   })
 })
