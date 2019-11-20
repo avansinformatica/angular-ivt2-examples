@@ -13,13 +13,18 @@ let server
 exports.config = {
   allScriptsTimeout: 11000,
   specs: ['./src/**/*.e2e-spec.ts'],
+
+  directConnect: true,
+  maxSessions: 4,
   capabilities: {
     chromeOptions: {
       args: ['--headless']
     },
-    browserName: 'chrome'
+    browserName: 'chrome',
+    maxInstances: 4,
+    shardTestFiles: true
   },
-  directConnect: true,
+
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
