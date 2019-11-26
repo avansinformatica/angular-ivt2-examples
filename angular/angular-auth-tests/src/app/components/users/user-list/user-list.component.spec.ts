@@ -17,6 +17,15 @@ class UserItemStubComponent {
   @Input() index
 }
 
+const dummyUser = {
+  name: {
+    title: 'mr',
+    firstname: 'FirstnameTest',
+    lastname: 'LastnameTest'
+  },
+  email: 'test@server.nl'
+}
+
 //
 //
 //
@@ -61,11 +70,21 @@ describe('UserListComponent', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges()
       expect(component).toBeTruthy()
+      expect(component.users.length).toBe(0)
     })
   }))
 
   it('should display a correct list of users', async(() => {
+    userServiceSpy.getUsers.and.returnValue(of([dummyUser, dummyUser]))
     // ToDo
+    // The component subscribes to an asynchronous Observable in ngOnInit, therefore
+    // we have to wait until that subscription returns -> .whenStable().
+    fixture.whenStable().then(() => {
+      fixture.detectChanges()
+      expect(component).toBeTruthy()
+      expect(component.users.length).toBe(2)
+      expect(component.users[0].name.firstname).toBe('FirstnameTest')
+    })
   }))
 
   it('should navigate to the correct user details when clicking on a user row', async(() => {
