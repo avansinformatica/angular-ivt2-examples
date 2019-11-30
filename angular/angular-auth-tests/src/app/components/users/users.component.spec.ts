@@ -1,15 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { Component, Input, Directive, HostListener } from '@angular/core'
-import { Router } from '@angular/router'
-import { of } from 'rxjs'
-
-import { UserListComponent } from './user-list/user-list.component'
-import { UserService } from './users.service'
-import { AlertService } from 'src/app/modules/alert/alert.service'
 import { UsersComponent } from './users.component'
 
 //
-//
+// Since the app.component.html template uses some component selectors,
+// we need to stub these in the test.
 //
 // tslint:disable-next-line: component-selector
 @Component({ selector: '[app-user-item]', template: '' })
@@ -40,37 +35,25 @@ export class RouterLinkStubDirective {
 }
 
 //
-//
+// Test suite for this component
 //
 describe('UsersComponent', () => {
   let component: UsersComponent
   let fixture: ComponentFixture<UsersComponent>
 
-  let httpClientSpy: { get: jasmine.Spy; post: jasmine.Spy }
-  let routerSpy: { navigateByUrl: jasmine.Spy }
-  let alertServiceSpy: { success: jasmine.Spy; error: jasmine.Spy }
-  let userServiceSpy: { getUsers: jasmine.Spy }
-
   beforeEach(async(() => {
-    alertServiceSpy = jasmine.createSpyObj('AlertService', ['error', 'success'])
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'post'])
-    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl'])
-    userServiceSpy = jasmine.createSpyObj('UserService', ['getUsers'])
-
     TestBed.configureTestingModule({
+      // The declared components needed to test the UsersComponent.
       declarations: [
-        UsersComponent,
-        UserListStubComponent,
-        UserItemStubComponent,
-        RouterOutletStubComponent,
-        RouterLinkStubDirective
+        UsersComponent, // The 'real' component that we will test
+        UserListStubComponent, // Stubbed component required to instantiate the real component.
+        UserItemStubComponent, // Stubbed component required to instantiate the real component.
+        RouterOutletStubComponent, // Stubbed component required to instantiate the real component.
+        RouterLinkStubDirective // Stubbed component required to instantiate the real component.
       ],
-      // Don't provide the real service! Provide a test-double instead!
-      providers: [
-        { provide: AlertService, useValue: alertServiceSpy },
-        { provide: Router, useValue: routerSpy },
-        { provide: UserService, useValue: userServiceSpy }
-      ]
+      // Because the users.component.ts does not have any dependency injected services,
+      // we do not need to provide any mocked services here.
+      providers: []
     }).compileComponents()
 
     fixture = TestBed.createComponent(UsersComponent)

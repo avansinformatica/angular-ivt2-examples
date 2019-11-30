@@ -11,7 +11,6 @@
     "test": "ng test --code-coverage --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e --protractor-config=e2e/protractor-ci.conf.js",
-    "webdriver-manager-update-backup": "node_modules/protractor/bin/webdriver-manager update --versions.chrome 76.0.3809.126",
     "webdriver-manager-update": "webdriver-manager update --versions.chrome 76.0.3809.126"
   },
   "private": true,
@@ -67,7 +66,7 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "protractor": "5.4.2",
-    "sonar-scanner": "3.1.0",
+    "sonarqube-scanner": "^2.5.0",
     "ts-node": "~8.5.2",
     "tslint": "5.20.0",
     "tslint-sonarts": "1.9.0"

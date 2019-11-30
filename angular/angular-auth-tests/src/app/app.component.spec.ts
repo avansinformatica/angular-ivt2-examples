@@ -3,8 +3,8 @@ import { AppComponent } from './app.component'
 import { Component, Directive, Input, HostListener } from '@angular/core'
 
 //
-//
-//
+// Since the app.component.html template uses some component selectors,
+// we need to stub these in the test.
 //
 @Component({ selector: 'app-dashboard', template: '' })
 class DashboardStubComponent {}
@@ -36,8 +36,7 @@ export class RouterLinkStubDirective {
 }
 
 //
-//
-//
+// The test suite for AppComponent.
 //
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -46,8 +45,8 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        AlertStubComponent,
+        AppComponent, // The 'real' component that we will test
+        AlertStubComponent, // Required stubbed components
         DashboardStubComponent,
         HeaderStubComponent,
         RouterOutletStubComponent,

@@ -21,7 +21,7 @@ describe('Login page', () => {
   it('should be at /login route after initialisation', () => {
     browser.waitForAngularEnabled(false)
     page.navigateTo('/login')
-    expect(browser.getCurrentUrl()).toContain('localhost:4200/login')
+    expect(browser.getCurrentUrl()).toContain('/login')
     expect(page.submitButton.isEnabled()).toBe(false)
   })
 
