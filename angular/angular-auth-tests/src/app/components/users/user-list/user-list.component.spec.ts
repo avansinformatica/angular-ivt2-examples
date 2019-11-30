@@ -87,20 +87,19 @@ describe('UserListComponent', () => {
     })
   }))
 
-  it('should display a correct list of users', async(() => {
+  it('should display a correct list of users', async () => {
     userServiceSpy.getUsers.and.returnValue(of([dummyUser, dummyUser]))
     // The component subscribes to an asynchronous Observable in ngOnInit, therefore
     // we have to wait until that subscription returns -> .whenStable().
-    fixture.whenStable().then(() => {
-      fixture.detectChanges()
-      expect(component).toBeTruthy()
-      expect(component.users.length).toBe(2)
-      expect(component.users[0].name.firstname).toBe('FirstnameTest')
-      //
-      // Optionally add more expects here
-      //
-    })
-  }))
+    await fixture.whenStable()
+    fixture.detectChanges()
+    expect(component).toBeTruthy()
+    expect(component.users.length).toBe(2)
+    expect(component.users[0].name.firstname).toBe('FirstnameTest')
+    //
+    // Optionally add more expects here
+    //
+  })
 
   it('should navigate to the correct user details when clicking on a user row', async(() => {
     // ToDo
