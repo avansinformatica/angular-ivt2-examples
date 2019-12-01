@@ -60,7 +60,7 @@ export class User {
     lastname: ''
   }
   location: {
-    street: string
+    street: { number: string; name: string }
     city: string
     state: string
     postcode: number

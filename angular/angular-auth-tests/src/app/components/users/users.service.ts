@@ -6,6 +6,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from 'src/environments/environment'
 
 @Injectable({
+  //
+  // This service is only loaded once the UsersModule is being referenced.
+  // In this example, only when the user is logged-in and navigated to the Users routes
+  // this module will be loaded.
+  // The other way of providing a service is by including it in the 'providers' array in the module.
+  // That would always load the server.
+  //
   providedIn: 'root'
 })
 export class UserService {
