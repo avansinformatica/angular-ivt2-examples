@@ -38,7 +38,6 @@ export class UserService {
       // map(users => users.map(data => new User(data))),
       //   optionally log the results
       // tap(console.log)
-
       catchError(this.handleError), // then handle the error
       // tap( // Log the result or error
       //   data => console.log(data),
@@ -50,7 +49,6 @@ export class UserService {
         this.users = users
         this.usersAvailable.next(true)
       })
-      // error => console.log(error))
     )
   }
 
@@ -69,7 +67,7 @@ export class UserService {
 
   createUser(user: User) {
     console.log('createUser')
-    return this.http.post(`${environment.apiUrl}/api/persons`, user).pipe(
+    return this.http.post<ApiResponse>(`${environment.apiUrl}/api/persons`, user).pipe(
       catchError(this.handleError), // then handle the error
       tap(
         // Log the result or error
@@ -81,9 +79,22 @@ export class UserService {
   }
 
   updateUser(user: User) {
-    console.log('updateUser')
+    console.log('updateUser', user)
     // ToDo: needs implementation
-    return this.http.put(`${environment.apiUrl}/api/persons/${user.id}`, user)
+    return this.http
+      .put<ApiResponse>(`${environment.apiUrl}/api/persons/${user.id}`, user)
+      .pipe(
+        catchError(this.handleError), // then handle the error
+        tap(
+          data => console.log(data)
+          // ,error => console.error(error)
+        )
+      )
+      .subscribe(result => {
+        console.log('updateUser returned', result)
+        this.users.push(user)
+        this.usersAvailable.next(true)
+      })
   }
 
   private handleError(error: HttpErrorResponse) {

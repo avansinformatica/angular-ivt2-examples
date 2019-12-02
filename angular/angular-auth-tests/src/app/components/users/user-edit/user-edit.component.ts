@@ -21,6 +21,7 @@ export class UserEditComponent implements OnInit {
 
   nationalities = [
     { country: 'Netherlands', code: 'NL' },
+    { country: 'Ireland', code: 'IE' },
     { country: 'Germany', code: 'DE' },
     { country: 'France', code: 'FR' },
     { country: 'Spain', code: 'ES' },
@@ -46,7 +47,8 @@ export class UserEditComponent implements OnInit {
               const user = this.userService.getUser(+params.id)
               // make local copy of user - detached from original array
               this.user = new User(JSON.parse(JSON.stringify(user)))
-              // local date of birth - for ngbDatePicker
+              console.log('Editing', this.user)
+              // local date of birth for ngbDatePicker
               this.dob = { year: '1980', month: '10', day: '28' }
             }
           })
@@ -59,23 +61,19 @@ export class UserEditComponent implements OnInit {
     }
   }
 
+  // Save user via the service
+  // Then navigate back to display view (= UserDetails).
+  // The display view must then show the new or edited user.
   onSubmit() {
     this.submitted = true
-    console.log('onSubmit')
+    console.log('onSubmit', this.user)
 
-    // Save user via the service
-    // Then navigate back to display view (= UserDetails).
-    // The display view must then show the new or edited user.
-
-    console.dir(this.user)
     if (this.user.id) {
+      // A user with id must have been saved before, so it must be an update.
       this.userService.updateUser(this.user)
     } else {
-      this.userService.createUser(this.user).subscribe(
-        data => console.log(data)
-        // ,
-        // error => console.error(error)
-      )
+      // A user withoud id has not been saved to the database before.
+      this.userService.createUser(this.user).subscribe(data => console.log(data))
     }
 
     this.router.navigate(['..'], { relativeTo: this.route })

@@ -79,7 +79,7 @@ describe('UserListComponent', () => {
     fixture.destroy()
   })
 
-  it('should create', async(() => {
+  fit('should create', async(() => {
     //
     // In UserListComponent.ngOnInit, the userService.getUsers() method is called.
     // We must mock that method and provide an expected result here.

@@ -107,8 +107,20 @@ export class User {
   // Authentication roles
   roles: UserRole[] = [UserRole.Basic]
 
-  constructor(values = {}) {
+  constructor(values: any = {}) {
+    // Assign all values to this objects properties
     Object.assign(this, values)
+    // In our case, the server returns a different set of name properties.
+    // Here we map them to our properties.
+    if (values.name && values.name.first) {
+      this.name.firstname = values.name.first
+    }
+    if (values.name && values.name.last) {
+      this.name.lastname = values.name.last
+    }
+    if (values._id) {
+      this.id = values._id
+    }
   }
 
   /**
@@ -125,6 +137,7 @@ export class User {
 
   // Get the user's fullname.
   get fullName() {
+    console.log('return', this.name.firstname + ' ' + this.name.lastname)
     return this.name.firstname + ' ' + this.name.lastname
   }
 }

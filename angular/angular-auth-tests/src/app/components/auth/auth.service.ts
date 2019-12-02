@@ -107,6 +107,7 @@ export class AuthService {
   private getCurrentUser(): Observable<User> {
     return new Observable(observer => {
       const localUser: any = JSON.parse(localStorage.getItem(this.currentUser))
+      console.log('localUser', localUser)
       if (localUser) {
         console.log('localUser found')
         observer.next(new User(localUser))
