@@ -31,7 +31,7 @@
     "rxjs": "~6.5.3",
     "zone.js": "~0.10.2",
     "compression": "^1.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "path": "^0.12.7",
     "@angular/cli": "~8.3.18",
     "typescript": "~3.5.3",
